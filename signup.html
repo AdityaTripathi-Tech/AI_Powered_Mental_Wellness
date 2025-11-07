@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #F0F9F0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #228B22;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="password"], button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #32CD32;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #228B22;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="signUpContainer">
+        <h1>Sign Up</h1>
+
+        <div class="error" id="signUpError"></div>
+
+        <input type="text" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <button id="signUpButton">Sign Up</button>
+
+        <p>Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+
+    <script>
+        document.getElementById("signUpButton").addEventListener("click", async function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorDiv = document.getElementById("signUpError");
+
+            if (!email || !password) {
+                errorDiv.textContent = 'Please fill in both fields';
+                return;
+            }
+
+            // Hash password
+            const hashedPassword = await sha256(password);
+
+            // Save user data in localStorage
+            const user = {
+                email: email,
+                password: hashedPassword
+            };
+
+            localStorage.setItem('user', JSON.stringify(user));
+
+            alert('Sign-Up successful!');
+            window.location.href = 'signin.html'; // Redirect to Sign-In page
+        });
+
+        // SHA-256 Hashing function
+        async function sha256(str) {
+            const buffer = new TextEncoder().encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+            return arrayBufferToHex(hashBuffer);
+        }
+
+        // Convert ArrayBuffer to Hex String
+        function arrayBufferToHex(buffer) {
+            return [...new Uint8Array(buffer)]
+                .map(byte => byte.toString(16).padStart(2, '0'))
+                .join('');
+        }
+    </script>
+</body>
+</html>
