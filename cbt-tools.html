@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24/7 CBT Tools - Mentality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        .tool-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .breathing-animation {
+            animation: breathe 4s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .streak-counter {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full"></div>
+                    <span class="text-xl font-bold text-gray-800">24/7 CBT Tools</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-teal-600 transition">Home</a>
+                    <a href="dashboard.html" class="text-gray-600 hover:text-teal-600 transition">Dashboard</a>
+                    <a href="mind-gym.html" class="text-gray-600 hover:text-teal-600 transition">Mind Gym</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🛠️ 24/7 CBT Tools</h1>
+            <p class="text-xl text-gray-600 mb-8">Self-guided CBT modules available anytime, anywhere</p>
+            
+            <!-- Daily Streak Counter -->
+            <div class="max-w-md mx-auto mb-8">
+                <div class="streak-counter">
+                    <div class="text-4xl font-bold mb-2" id="streakCount">0</div>
+                    <div class="text-lg opacity-90">Day Streak</div>
+                    <div class="text-sm opacity-75 mt-2">Keep practicing daily to maintain your streak!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CBT Tools Grid -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Breathing Practice -->
+                <div class="tool-card rounded-xl p-6 cursor-pointer" onclick="openTool('breathing')">
+                    <div class="text-center">
+                        <div class="breathing-animation w-16 h-16 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl text-white">🫁</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Breathing Practice</h3>
+                        <p class="text-gray-600 mb-4">Guided breathing exercises for anxiety and stress relief</p>
+                        <div class="text-sm text-blue-600 font-semibold">Sessions completed: <span id="breathingSessions">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Thought Reframing -->
+                <div class="tool-card rounded-xl p-6 cursor-pointer" onclick="openTool('thought-reframing')">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl text-white">🧠</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Thought Reframing</h3>
+                        <p class="text-gray-600 mb-4">Challenge negative thoughts with CBT techniques</p>
+                        <div class="text-sm text-purple-600 font-semibold">Thoughts reframed: <span id="thoughtsReframed">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Positive Journaling -->
+                <div class="tool-card rounded-xl p-6 cursor-pointer" onclick="openTool('positive-journaling')">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl text-white">📝</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Positive Journaling</h3>
+                        <p class="text-gray-600 mb-4">Daily gratitude and positive reflection exercises</p>
+                        <div class="text-sm text-green-600 font-semibold">Entries written: <span id="positiveEntries">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Meditation Guide -->
+                <div class="tool-card rounded-xl p-6 cursor-pointer" onclick="openTool('meditation')">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl text-white">🧘</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Meditation Guide</h3>
+                        <p class="text-gray-600 mb-4">Guided mindfulness and meditation sessions</p>
+                        <div class="text-sm text-indigo-600 font-semibold">Minutes meditated: <span id="meditationMinutes">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Mood Tracker -->
+                <div class="tool-card rounded-xl p-6 cursor-pointer" onclick="openTool('mood-tracker')">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl text-white">📊</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Mood Tracker</h3>
+                        <p class="text-gray-600 mb-4">Track daily moods and identify patterns</p>
+                        <div class="text-sm text-yellow-600 font-semibold">Days tracked: <span id="moodDays">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Crisis Support -->
+                <div class="tool-card rounded-xl p-6 cursor-pointer bg-red-50 border-2 border-red-200" onclick="openTool('crisis-support')">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-red-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl text-white">🆘</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Crisis Support</h3>
+                        <p class="text-gray-600 mb-4">Immediate help and emergency resources</p>
+                        <div class="text-sm text-red-600 font-semibold">Available 24/7</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Overview -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">📈 Your Progress</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Weekly Activity</h3>
+                        <canvas id="activityChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Tool Usage</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Breathing Practice</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-500 h-2 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">75%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Thought Reframing</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2">
+                                        <div class="bg-purple-500 h-2 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">60%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Meditation</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2">
+                                        <div class="bg-indigo-500 h-2 rounded-full" style="width: 45%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">45%</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-600">Journaling</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-32 bg-gray-200 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 80%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Modal -->
+    <div id="toolModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="toolTitle" class="text-2xl font-bold text-gray-800"></h2>
+                <button onclick="closeTool()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div id="toolContent">
+                <!-- Tool content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/blockchain-privacy.js"></script>
+    <script src="js/cbt-tools.js"></script>
+</body>
+</html>
