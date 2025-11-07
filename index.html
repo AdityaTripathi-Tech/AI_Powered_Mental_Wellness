@@ -1,236 +1,1309 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Admin- CBT- Congutative longutative etc</title>
-    <link rel="stylesheet" href="../css/main.css" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/favicon_io/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../assets/favicon_io/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/favicon_io/favicon-16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/favicon_io/android-chrome-512x512.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/favicon_io/android-chrome-192x192.png"
-    />
-    <link rel="manifest" href="../assets/favicon_io/site.webmanifest" />
-  </head>
 
-  <body>
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <div class="flex justify-center items-center gap-2">
-          <svg
-            id="logo-37"
-            width="42"
-            height="38"
-            viewBox="0 0 42 38"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.74661 28.7259C7.28678 29.8002 9.78389 29.8002 11.3241 28.7259C12.8642 27.6516 12.8642 25.9098 11.3241 24.8355C9.78389 23.7612 7.28678 23.7612 5.74661 24.8355C4.20644 25.9098 4.20644 27.6516 5.74661 28.7259Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M21.7322 14.1371C24.0425 15.7485 27.7881 15.7485 30.0984 14.1371C32.4086 12.5256 32.4086 9.91298 30.0984 8.30155C27.7881 6.69011 24.0425 6.69011 21.7322 8.30155C19.422 9.91298 19.422 12.5256 21.7322 14.1371Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M13.2464 21.4315C15.1716 22.7743 18.293 22.7743 20.2182 21.4315C22.1434 20.0886 22.1434 17.9114 20.2182 16.5685C18.293 15.2257 15.1716 15.2257 13.2464 16.5685C11.3212 17.9114 11.3212 20.0886 13.2464 21.4315Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M0.866345 20.4589C2.02147 21.2646 3.8943 21.2646 5.04943 20.4589C6.20455 19.6532 6.20455 18.3469 5.04943 17.5411C3.8943 16.7354 2.02147 16.7354 0.866345 17.5411C-0.288782 18.3469 -0.288781 19.6532 0.866345 20.4589Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M13.2464 5.87008C15.1716 7.21294 18.293 7.21294 20.2182 5.87008C22.1434 4.52722 22.1434 2.35001 20.2182 1.00715C18.293 -0.335715 15.1716 -0.335716 13.2464 1.00715C11.3212 2.35001 11.3212 4.52722 13.2464 5.87008Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M5.74661 13.1645C7.28678 14.2388 9.78389 14.2388 11.3241 13.1645C12.8642 12.0902 12.8642 10.3484 11.3241 9.27415C9.78389 8.19986 7.28678 8.19986 5.74661 9.27415C4.20644 10.3484 4.20645 12.0902 5.74661 13.1645Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M13.2464 36.9929C15.1716 38.3357 18.293 38.3357 20.2182 36.9929C22.1434 35.65 22.1434 33.4728 20.2182 32.1299C18.293 30.7871 15.1716 30.7871 13.2464 32.1299C11.3212 33.4728 11.3212 35.65 13.2464 36.9929Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M31.9011 21.9178C34.2114 23.5292 37.9571 23.5292 40.2673 21.9178C42.5776 20.3064 42.5776 17.6937 40.2673 16.0823C37.9571 14.4708 34.2114 14.4708 31.9011 16.0823C29.5909 17.6937 29.5909 20.3064 31.9011 21.9178Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-            <path
-              d="M21.7322 29.6984C24.0425 31.3099 27.7881 31.3099 30.0984 29.6984C32.4086 28.087 32.4086 25.4744 30.0984 23.8629C27.7881 22.2515 24.0425 22.2515 21.7322 23.8629C19.422 25.4744 19.422 28.087 21.7322 29.6984Z"
-              class="ccustom"
-              fill="#25CAAC"
-            ></path>
-          </svg>
-          CBT - LiftShorts
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CBT- Congutative longutative etc</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/android-chrome-192x192.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+</head>
+
+<body>
+    <header class="bg-white p-4">
+        <div class="mx-auto max-w-screen-xl  px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex-1 md:flex md:items-center md:gap-12">
+                    <a class="block text-teal-600" href="/">
+                        <span class="sr-only">Home</span>
+                        <div class="flex items-center  gap-2">
+
+                            <svg id="logo-37" width="42" height="38" viewBox="0 0 42 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.74661 28.7259C7.28678 29.8002 9.78389 29.8002 11.3241 28.7259C12.8642 27.6516 12.8642 25.9098 11.3241 24.8355C9.78389 23.7612 7.28678 23.7612 5.74661 24.8355C4.20644 25.9098 4.20644 27.6516 5.74661 28.7259Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M21.7322 14.1371C24.0425 15.7485 27.7881 15.7485 30.0984 14.1371C32.4086 12.5256 32.4086 9.91298 30.0984 8.30155C27.7881 6.69011 24.0425 6.69011 21.7322 8.30155C19.422 9.91298 19.422 12.5256 21.7322 14.1371Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 21.4315C15.1716 22.7743 18.293 22.7743 20.2182 21.4315C22.1434 20.0886 22.1434 17.9114 20.2182 16.5685C18.293 15.2257 15.1716 15.2257 13.2464 16.5685C11.3212 17.9114 11.3212 20.0886 13.2464 21.4315Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M0.866345 20.4589C2.02147 21.2646 3.8943 21.2646 5.04943 20.4589C6.20455 19.6532 6.20455 18.3469 5.04943 17.5411C3.8943 16.7354 2.02147 16.7354 0.866345 17.5411C-0.288782 18.3469 -0.288781 19.6532 0.866345 20.4589Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 5.87008C15.1716 7.21294 18.293 7.21294 20.2182 5.87008C22.1434 4.52722 22.1434 2.35001 20.2182 1.00715C18.293 -0.335715 15.1716 -0.335716 13.2464 1.00715C11.3212 2.35001 11.3212 4.52722 13.2464 5.87008Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M5.74661 13.1645C7.28678 14.2388 9.78389 14.2388 11.3241 13.1645C12.8642 12.0902 12.8642 10.3484 11.3241 9.27415C9.78389 8.19986 7.28678 8.19986 5.74661 9.27415C4.20644 10.3484 4.20645 12.0902 5.74661 13.1645Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 36.9929C15.1716 38.3357 18.293 38.3357 20.2182 36.9929C22.1434 35.65 22.1434 33.4728 20.2182 32.1299C18.293 30.7871 15.1716 30.7871 13.2464 32.1299C11.3212 33.4728 11.3212 35.65 13.2464 36.9929Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M31.9011 21.9178C34.2114 23.5292 37.9571 23.5292 40.2673 21.9178C42.5776 20.3064 42.5776 17.6937 40.2673 16.0823C37.9571 14.4708 34.2114 14.4708 31.9011 16.0823C29.5909 17.6937 29.5909 20.3064 31.9011 21.9178Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M21.7322 29.6984C24.0425 31.3099 27.7881 31.3099 30.0984 29.6984C32.4086 28.087 32.4086 25.4744 30.0984 23.8629C27.7881 22.2515 24.0425 22.2515 21.7322 23.8629C19.422 25.4744 19.422 28.087 21.7322 29.6984Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                            </svg>
+                            <a class="text-gray-500 transition hover:text-gray-500/75" href="index.html">
+                               CBT - LiftShorts </a>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="md:flex md:items-center md:gap-12">
+                    <nav aria-label="Global" id="navbarj" class="hidden md:block ">
+                        <ul class="flex items-center gap-6 text-m ">
+                            <li>
+                                <a class="text-gray-500 transition hover:text-gray-500/75" href="mind-gym.html">🎮 Mind Gym</a>
+                            </li>
+
+                            <li>
+                                <a class="text-gray-500 transition hover:text-gray-500/75" href="ai-journal.html">📝 AI Journal</a>
+                            </li>
+
+                            <li>
+                                <a class="text-gray-500 transition hover:text-gray-500/75" href="emotion-detection.html">😊 Emotion AI</a>
+                            </li>
+
+                            <li>
+                                <a class="text-gray-500 transition hover:text-gray-500/75" href="therapist-matching.html">👩‍⚕️ Find Therapist</a>
+                            </li>
+
+                            <li>
+                                <a class="text-gray-500 transition hover:text-gray-500/75" href="enhanced-dashboard.html">📊 Dashboard</a>
+                            </li>
+                        </ul>
+                    </nav>
+                     
+                    <div class="flex items-center gap-4">
+                        <div class="sm:flex sm:gap-4">
+                            <a class="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+                                href="/signup.html">
+                                Login
+                            </a>
+                        </div>
+
+                        <div class="block md:hidden">
+                            <button  id="menu-toggle" class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h2
-          class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
-        >
-          Admin Login
+        <div id="navbar" class="hidden">
+        <div class="flex justify-center text-center items-center px-4 py-3 text-gray-500 bg-gray-100">
+            <div class="flex flex-col w-full gap-2">
+                <a class="text-gray-600 border border-teal-600 w-full hover:text-gray-800 py-2" href="mind-gym.html">🎮 Mind Gym</a>
+                <a class="text-gray-600 border border-teal-600 w-full hover:text-gray-800 py-2" href="ai-journal.html">📝 AI Journal</a>
+                <a class="text-gray-600 border border-teal-600 w-full hover:text-gray-800 py-2" href="emotion-detection.html">😊 Emotion AI</a>
+                <a class="text-gray-600 border border-teal-600 w-full hover:text-gray-800 py-2" href="therapist-matching.html">👩‍⚕️ Find Therapist</a>
+                <a class="text-gray-600 border border-teal-600 w-full hover:text-gray-800 py-2" href="enhanced-dashboard.html">📊 Dashboard</a>
+  
+        </div>
+    </header>
+    <section id="main">
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+                <div class="relative hidden h-64 sm:hidden lg:hidden overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
+
+                </div>
+
+                <div class="lg:py-24 ">
+
+                    <p class="mt-4 text-gray-600">
+                        COGNITIVE BEHAVIORAL THERAPY (CBT) ONLINE
+                    </p>
+                    <h2 class="text-3xl  sm:text-4xl">World renowned online therapists, counselors, and coaches
+                        specializing in Cognitive Behavioral Therapy.</h2>
+
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="demo.html"
+                            class="inline-block text-center rounded bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 text-sm font-medium text-white transition hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring focus:ring-purple-400">
+                            🚀 Explore Platform
+                        </a>
+                        <a href="enhanced-dashboard.html"
+                            class="inline-block text-center rounded bg-teal-600 px-8 py-3 text-sm font-medium text-white transition hover:bg-teal-700 focus:outline-none focus:ring focus:ring-white-400">
+                            🚀 Dashboard
+                        </a>
+                        <a href="unique-features.html"
+                            class="inline-block text-center rounded border border-teal-600 px-8 py-3 text-sm font-medium text-teal-600 transition hover:bg-teal-600 hover:text-white focus:outline-none focus:ring focus:ring-teal-400">
+                            🏆 Features
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="bg-teal-600 p-5 text-center text-white text-xl">
+            <h2> The world’s largest platform dedicated to Cognitive Behavioral Therapy online for clients and
+                clinicians.</h2>
+        </div>
+    </section>
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted by many Patients</h2>
+
+            <p class="mt-4 text-gray-500 sm:text-xl">
+              Join the many who have found hope and healing with our digital approach with our Digital CBT.
+            </p>
+        </div>
+
+        <dl
+            class="mg-6 grid grid-cols-1 gap-4 divide-y divide-gray-100 sm:mt-8 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+            <div class="flex flex-col px-4 py-8 text-center">
+                <dt class="order-last text-lg font-medium text-gray-500">Total Sales</dt>
+
+                <dd class="text-4xl font-extrabold text-teal-600 md:text-5xl">$13.8k</dd>
+            </div>
+
+            <div class="flex flex-col px-4 py-8 text-center">
+                <dt class="order-last text-lg font-medium text-gray-500">Treated Patients</dt>
+
+                <dd class="text-4xl font-extrabold text-teal-600 md:text-5xl">240</dd>
+            </div>
+
+            <div class="flex flex-col px-4 py-8 text-center">
+                <dt class="order-last text-lg font-medium text-gray-500">Plans renewed</dt>
+
+                <dd class="text-4xl font-extrabold text-teal-600 md:text-5xl">86</dd>
+            </div>
+
+            <div class="flex flex-col px-4 py-8 text-center">
+                <dt class="order-last text-lg font-medium text-gray-500">Site Visits</dt>
+
+                <dd class="text-4xl font-extrabold text-teal-600 md:text-5xl">96k</dd>
+            </div>
+        </dl>
+    </div>
+    <section>
+        <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div class="bg-teal-600 p-8 md:p-12 lg:px-16 lg:py-24">
+                    <div class="mx-auto max-w-xl">
+                        <h2 class="text-2xl  font-bold text-white md:text-4xl">
+                            More effective than traditional talk therapy.
+                        </h2>
+
+                        <p class="hidden text-white/90 sm:mt-4 sm:block">
+                            Cognitive Behavioral Therapy (CBT) is an evidence-based approach to mental and emotional
+                            wellness that actually works.
+                        </p>
+                        <p class="hidden text-white/90 sm:mt-4 sm:block">
+                            Our therapists and coaches use scientifically proven methods to teach you the skills you
+                            need in order to break negative patterns and habits. </p>
+                        <p class="hidden text-white/90 sm:mt-4 sm:block">
+                            Through directive sessions you’ll build progress as you learn and practice actionable skills
+                            for improving all areas of your life. </p>
+
+                        <div class="mt-4 md:mt-8">
+                            <a href="#"
+                                class="inline-block rounded border border-white bg-white px-12 py-3 text-sm font-medium text-teal-500 transition hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400">
+                                Get Started Today
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2">
+                    <img alt=""
+                        src="https://images.unsplash.com/photo-1527628173875-3c7bfd28ad78?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNidCUyMHRoZXJhcHl8ZW58MHx8MHx8fDA%3D"
+                        class="h-40 w-full object-cover sm:h-56 md:h-full" />
+
+                    <img alt=""
+                        src="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2J0JTIwdGhlcmFweXxlbnwwfHwwfHx8MA%3D%3D"
+                        class="h-40 w-full object-cover sm:h-56 md:h-full" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">🚀 Experience Our Platform</h2>
+                <p class="text-xl text-gray-600">Fully functional CBT tools powered by AI and blockchain technology</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mind Gym -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">🎮</div>
+                    <h3 class="text-xl font-bold mb-3">Mind Gym Games</h3>
+                    <p class="text-gray-600 mb-4">6 interactive CBT games including breathing exercises, emotion mazes, and focus challenges</p>
+                    <a href="mind-gym.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Play Games →
+                    </a>
+                </div>
+                
+                <!-- AI Emotion Detection -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">😊</div>
+                    <h3 class="text-xl font-bold mb-3">AI Emotion Detection</h3>
+                    <p class="text-gray-600 mb-4">Real-time webcam emotion analysis with mood tracking and AI recommendations</p>
+                    <a href="emotion-detection.html" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                        Try Emotion AI →
+                    </a>
+                </div>
+                
+                <!-- AI Journal -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">📝</div>
+                    <h3 class="text-xl font-bold mb-3">AI Smart Journal</h3>
+                    <p class="text-gray-600 mb-4">Intelligent journaling with sentiment analysis and personalized insights</p>
+                    <a href="ai-journal.html" class="inline-block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Start Writing →
+                    </a>
+                </div>
+                
+                <!-- Therapist Matching -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">👩‍⚕️</div>
+                    <h3 class="text-xl font-bold mb-3">Find Your Therapist</h3>
+                    <p class="text-gray-600 mb-4">AI-powered matching system to connect you with the perfect therapist</p>
+                    <a href="therapist-matching.html" class="inline-block bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">
+                        Find Therapist →
+                    </a>
+                </div>
+                
+                <!-- CBT Tools -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="text-xl font-bold mb-3">24/7 CBT Tools</h3>
+                    <p class="text-gray-600 mb-4">Breathing exercises, thought reframing, meditation guides, and crisis support</p>
+                    <a href="cbt-tools.html" class="inline-block bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition">
+                        Use Tools →
+                    </a>
+                </div>
+                
+                <!-- AI Avatar -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-3">Dr. Mira AI Companion</h3>
+                    <p class="text-gray-600 mb-4">24/7 AI therapist companion with voice chat and personalized support</p>
+                    <a href="ai-avatar.html" class="inline-block bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                        Chat with Dr. Mira →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Additional Features Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <!-- Dashboard -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">📊</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Enhanced Dashboard</h3>
+                            <p class="text-gray-600">Complete analytics and progress tracking</p>
+                        </div>
+                    </div>
+                    <a href="enhanced-dashboard.html" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition">
+                        View Dashboard →
+                    </a>
+                </div>
+                
+                <!-- Unique Features -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">🏆</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Hackathon Features</h3>
+                            <p class="text-gray-600">12+ unique innovations including VR therapy, blockchain privacy</p>
+                        </div>
+                    </div>
+                    <a href="unique-features.html" class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                        Explore Innovations →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--   -->
+    <div class="bg-white py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:text-center">
+                
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">It all starts with a few simple questions…</p>
+                <h2 class="text-base font-semibold leading-7 mt-4 underline text-teal-600">Get Started</h2>
+                <!-- <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget
+                    aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra
+                    elit nunc.</p> -->
+            </div>
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div
+                                class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                </svg>
+                            </div>
+                            Personalized
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Begin with a personalized assessment that will match you with a highly qualified therapist that meets your specific needs.</dd>
+                    </div>
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div
+                                class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                                </svg>
+                            </div>
+                            Private
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Secure, HIPAA compliant access to our library of CBT resources: videos, mindfulness exercises, online courses, webinars, and more!</dd>
+                    </div>
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div
+                                class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                </svg>
+                            </div>
+Professional
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Our therapists, counselors, and coaches are individually vetted because our patients deserve working with the very best practitioners.</dd>
+                    </div>
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div
+                                class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+                                </svg>
+                            </div>
+                            Advanced Training
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Education and tools for health practitioners who are pre-licensed and licensed. </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="flex h-full justify-center items-center dark:bg-teal-600">
+        <div class="p-6">
+            <div
+                class="flex flex-wrap items-center w-full max-w-5xl p-5 mx-auto text-left  rounded lg:flex-nowrap md:p-8 dark:border-gray-700">
+                <div class="flex-1 w-full mb-5 md:mb-0 md:pr-5 lg:pr-10 md:w-1/2">
+                    <h3 class="mb-2 text-2xl font-bold text-white">Subscribe to Newsletter</h3>
+                    <p class="text-white ">Provide your email to get email notification when we launch
+                        new
+                        Courses or Features
+                    </p>
+                </div>
+                <div class="w-full px-1 flex-0 md:w-auto lg:w-1/2">
+                    <form novalidate="">
+                        <input type="hidden" name="tags" value="earlyaccess">
+                        <div class="flex flex-col sm:flex-row">
+                            <input type="email" id="email" name="email" placeholder="Enter your email address"
+                                class="flex-1 px-3 py-2 placeholder-white-300 border border-gray-300 rounded-md sm:mr-5 focus:outline-none focus:ring focus:ring-teal-100 focus:border-teal-300   ">
+                            <button type="submit"
+                                class="w-full px-6 py-4 mt-5 text-lg bg-gray-900 rounded-md sm:mt-0 sm:w-auto whitespace-nowrap bg-white text-teal-600 hover:bg-transparent hover:text-white hover:rounded border hover:border-white">
+                                Subscribe </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+
+
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted by Doctors</h2>
+
+            <p class="mt-4 text-gray-500 sm:text-xl">
+              Endorsed by leading doctors worldwide for its effectiveness and reliability. Trusted by healthcare professionals across the globe for superior mental health support and backed by global medical experts for its evidence-based therapeutic solutions.
+            </p>
+        </div>
+
+        <div class="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-stretch md:grid-cols-3 md:gap-8">
+                <div class="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="p-6 sm:px-8">
+                        <h2 class="text-lg font-medium text-gray-900">
+                            Starter
+                            <span class="sr-only">Plan</span>
+                        </h2>
+
+                        <p class="mt-2 text-gray-700">Basic Plans for normal individuals.</p>
+
+                        <p class="mt-2 sm:mt-4">
+                            <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> 10$ </strong>
+
+                            <span class="text-sm font-medium text-gray-700">/month</span>
+                        </p>
+
+                        <a class="mt-4 block rounded border border-teal-600 bg-teal-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 sm:mt-6"
+                            href="#">
+                            Get Started
+                        </a>
+                    </div>
+
+                    <div class="p-6 sm:px-8">
+                        <p class="text-lg font-medium text-gray-900 sm:text-xl">What's included:</p>
+
+                        <ul class="mt-2 space-y-2 sm:mt-4">
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700"> 3 Therapist Sessions/Month</span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700">24/7 AI Chatbot</span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700"> Access to Curated CBT Resources  </span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-red-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+
+                                <span class="text-gray-700"> Unlimited Therapist Sessions </span>
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="p-6 sm:px-8">
+                        <h2 class="text-lg font-medium text-gray-900">
+                            Pro
+                            <span class="sr-only">Plan</span>
+                        </h2>
+
+                        <p class="mt-2 text-gray-700"> Recommended Plan with Cool features </p>
+
+                        <p class="mt-2 sm:mt-4">
+                            <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> 30$ </strong>
+
+                            <span class="text-sm font-medium text-gray-700">/month</span>
+                        </p>
+
+                        <a class="mt-4 block rounded border border-teal-600 bg-teal-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 sm:mt-6"
+                            href="#">
+                            Get Started
+                        </a>
+                    </div>
+
+                    <div class="p-6 sm:px-8">
+                        <p class="text-lg font-medium text-gray-900 sm:text-xl">What's included:</p>
+
+                        <ul class="mt-2 space-y-2 sm:mt-4">
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700"> 3 Therapist Sessions per day</span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700">24/7 AI Chatbot</span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700"> Expanded CBT Resources  </span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                  stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                              </svg>
+
+                              <span class="text-gray-700"> Personalized Progress Tracking  </span>
+                          </li>
+
+                            
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="divide-y divide-gray-200 rounded-2xl border border-gray-200 shadow-sm">
+                    <div class="p-6 sm:px-8">
+                        <h2 class="text-lg font-medium text-gray-900">
+                            Advanced
+                            <span class="sr-only">Plan</span>
+                        </h2>
+
+                        <p class="mt-2 text-gray-700"> Everything you may ever need!</p>
+
+                        <p class="mt-2 sm:mt-4">
+                            <strong class="text-3xl font-bold text-gray-900 sm:text-4xl"> 60$ </strong>
+
+                            <span class="text-sm font-medium text-gray-700">/month</span>
+                        </p>
+
+                        <a class="mt-4 block rounded border border-teal-600 bg-teal-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-teal-600 focus:outline-none focus:ring active:text-teal-500 sm:mt-6"
+                            href="#">
+                            Get Started
+                        </a>
+                    </div>
+
+                    <div class="p-6 sm:px-8">
+                        <p class="text-lg font-medium text-gray-900 sm:text-xl">What's included:</p>
+
+                        <ul class="mt-2 space-y-2 sm:mt-4">
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700"> Unlimited Therapist Sessions</span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700">24/7 AI Chatbot</span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                                <span class="text-gray-700"> Full CBT Resource Library  </span>
+                            </li>
+
+                            <li class="flex items-center gap-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                  stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                              </svg>
+
+                              <span class="text-gray-700"> Advanced Progress Tracking  </span>
+                          </li>
+
+                          <li class="flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-5 text-teal-700">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+
+                            <span class="text-gray-700"> Extended Support Features  </span>
+                        </li>
+
+    
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--  -->
+
+    <!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<section
+class="overflow-hidden bg-[url(https://images.unsplash.com/photo-1707901841130-b70c6ff6a0ec?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI3fHxjYnQlMjB0aGVyYXB5fGVufDB8fDB8fHww)] bg-cover bg-top bg-no-repeat"
+>
+<div class="bg-black/60 p-8 md:p-12 lg:px-16 lg:py-24">
+  <div class=" ltr:sm:text-left rtl:sm:text-right">
+    <h2 class="text-2xl font-bold text-white sm:text-3xl  md:text-3xl">Virtual CBT therapy that easily fits into your daily life.
+    </h2>
+
+    <p class="hidden max-w-lg text-white/90 md:mt-6 md:block md:text-lg md:leading-relaxed">
+        As long as you have a Wi-Fi connection, you can securely message your therapist anytime from anywhere. Your conversations pick up where they leave off and can be accessed across all devices.  This gives you a seamless experience that integrates conveniently with all sorts of busy schedules.  
+
+
+    </p>
+    <p class="hidden max-w-lg text-white/90 md:mt-6 md:block md:text-lg md:leading-relaxed">
+        What’s more? CBT online is just as effective as traditional face-to-face therapy.         
+    </p>
+    
+
+    <div class="mt-4 sm:mt-8">
+      <a
+        href="#"
+        class="inline-block rounded-full bg-teal-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-teal-700 focus:outline-none focus:ring focus:ring-yellow-400"
+      >
+        Get Started
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!--  -->
+
+<!--
+  Heads up! 👋
+
+  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
+-->
+
+<link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
+
+<script type="module">
+  import KeenSlider from 'https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/+esm'
+
+  const keenSlider = new KeenSlider(
+    '#keen-slider',
+    {
+      loop: true,
+      slides: {
+        origin: 'center',
+        perView: 1.25,
+        spacing: 16,
+      },
+      breakpoints: {
+        '(min-width: 1024px)': {
+          slides: {
+            origin: 'auto',
+            perView: 1.5,
+            spacing: 32,
+          },
+        },
+      },
+    },
+    []
+  )
+
+  const keenSliderPrevious = document.getElementById('keen-slider-previous')
+  const keenSliderNext = document.getElementById('keen-slider-next')
+
+  const keenSliderPreviousDesktop = document.getElementById('keen-slider-previous-desktop')
+  const keenSliderNextDesktop = document.getElementById('keen-slider-next-desktop')
+
+  keenSliderPrevious.addEventListener('click', () => keenSlider.prev())
+  keenSliderNext.addEventListener('click', () => keenSlider.next())
+
+  keenSliderPreviousDesktop.addEventListener('click', () => keenSlider.prev())
+  keenSliderNextDesktop.addEventListener('click', () => keenSlider.next())
+</script>
+
+<section class="bg-gray-50">
+  <div class="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
+      <div class="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Don't just take our word for it...
         </h2>
+
+        <p class="mt-4 text-gray-700">
+          Don’t just take our word for it. Check out real user reviews to see how our digital CBT services have made a difference. Read their stories and find out why they trust us!!
+        </p>
+
+        <div class="hidden lg:mt-8 lg:flex lg:gap-4">
+          <button
+            aria-label="Previous slide"
+            id="keen-slider-previous-desktop"
+            class="rounded-full border border-teal-600 p-3 text-teal-600 transition hover:bg-teal-600 hover:text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5 rtl:rotate-180"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </button>
+
+          <button
+            aria-label="Next slide"
+            id="keen-slider-next-desktop"
+            class="rounded-full border border-teal-600 p-3 text-teal-600 transition hover:bg-teal-600 hover:text-white"
+          >
+            <svg
+              class="size-5 rtl:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 5l7 7-7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" id="admin-login" method="POST">
-          <div>
-            <label
-              for="email"
-              class="block text-sm font-medium leading-6 text-gray-900"
-              >Email address</label
+      <div class="-mx-6 lg:col-span-2 lg:mx-0">
+        <div id="keen-slider" class="keen-slider">
+          <div class="keen-slider__slide">
+            <blockquote
+              class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12"
             >
-            <div class="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
+              <div>
+                <div class="flex gap-0.5 text-green-500">
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
 
-          <div>
-            <div class="flex items-center justify-between">
-              <label
-                for="password"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Password</label
-              >
-              <div class="text-sm">
-                <a
-                  href="#"
-                  class="font-semibold text-teal-600 hover:text-teal-500"
-                  >Forgot password?</a
-                >
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                </div>
+
+                <div class="mt-4">
+                  <p class="text-2xl font-bold text-teal-600 sm:text-3xl">Transformative Experience with Unlimited Support</p>
+
+                  <p class="mt-4 leading-relaxed text-gray-700">
+                    The Premium Plan has been a game-changer for me. The unlimited therapist sessions allowed me to tackle my anxiety head-on, and the 24/7 AI chatbot provided instant support whenever I needed it. The personalized care plan and advanced tracking features gave me a clear path to improvement. Highly recommended for anyone serious about their mental health.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autocomplete="current-password"
-                required
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-600 sm:text-sm sm:leading-6"
-              />
-            </div>
+
+              <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                &mdash; Mark Adams
+              </footer>
+            </blockquote>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              class="flex w-full justify-center rounded-md bg-teal-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+          <div class="keen-slider__slide">
+            <blockquote
+              class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12"
             >
-              Sign in
-            </button>
+              <div>
+                <div class="flex gap-0.5 text-green-500">
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                </div>
+
+                <div class="mt-4">
+                  <p class="text-2xl font-bold text-teal-600 sm:text-3xl">Exceptional Resources and Guidance</p>
+
+                  <p class="mt-4 leading-relaxed text-gray-700">
+                    I opted for the Standard Plan and have been very impressed with the comprehensive resources available. The CBT exercises and guided meditations are top-notch. Unlimited sessions with a therapist have helped me work through my challenges effectively. The personalized tracking has been a valuable tool in seeing my progress. Worth every penny!
+                  </p>
+                </div>
+              </div>
+
+              <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                &mdash; Krish Gupta
+              </footer>
+            </blockquote>
           </div>
-        </form>
+
+          <div class="keen-slider__slide">
+            <blockquote
+              class="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 lg:p-12"
+            >
+              <div>
+                <div class="flex gap-0.5 text-green-500">
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+
+                  <svg
+                    class="size-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
+                  </svg>
+                </div>
+
+                <div class="mt-4">
+                  <p class="text-2xl font-bold text-teal-600 sm:text-3xl">Great Support for a Low Cost</p>
+
+                  <p class="mt-4 leading-relaxed text-gray-700">
+                    The Basic Plan offers fantastic value. The limited therapist sessions are sufficient, and having access to the AI chatbot around the clock has been incredibly helpful. The curated CBT resources are well-organized and easy to use. Perfect for those looking for essential support at an affordable price.
+                  </p>
+                </div>
+              </div>
+
+              <footer class="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                &mdash; Parth Singh
+              </footer>
+            </blockquote>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- end login form -->
+    <div class="mt-8 flex justify-center gap-4 lg:hidden">
+      <button
+        aria-label="Previous slide"
+        id="keen-slider-previous"
+        class="rounded-full border border-teal-600 p-4 text-teal-600 transition hover:bg-teal-600 hover:text-white"
+      >
+        <svg
+          class="size-5 -rotate-180 transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+        </svg>
+      </button>
 
+      <button
+        aria-label="Next slide"
+        id="keen-slider-next"
+        class="rounded-full border border-teal-600 p-4 text-teal-600 transition hover:bg-teal-600 hover:text-white"
+      >
+        <svg
+          class="size-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!--  -->
+<!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
+
+    <footer class="bg-white">
+        <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2">
+                <div class="border-b border-gray-100 py-8 lg:order-last lg:border-b-0 lg:border-s lg:py-16 lg:ps-16">
+                    <div class="block text-teal-600 lg:hidden">
+                        <div class="flex items-center  gap-2">
+
+                            <svg id="logo-37" width="42" height="38" viewBox="0 0 42 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.74661 28.7259C7.28678 29.8002 9.78389 29.8002 11.3241 28.7259C12.8642 27.6516 12.8642 25.9098 11.3241 24.8355C9.78389 23.7612 7.28678 23.7612 5.74661 24.8355C4.20644 25.9098 4.20644 27.6516 5.74661 28.7259Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M21.7322 14.1371C24.0425 15.7485 27.7881 15.7485 30.0984 14.1371C32.4086 12.5256 32.4086 9.91298 30.0984 8.30155C27.7881 6.69011 24.0425 6.69011 21.7322 8.30155C19.422 9.91298 19.422 12.5256 21.7322 14.1371Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 21.4315C15.1716 22.7743 18.293 22.7743 20.2182 21.4315C22.1434 20.0886 22.1434 17.9114 20.2182 16.5685C18.293 15.2257 15.1716 15.2257 13.2464 16.5685C11.3212 17.9114 11.3212 20.0886 13.2464 21.4315Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M0.866345 20.4589C2.02147 21.2646 3.8943 21.2646 5.04943 20.4589C6.20455 19.6532 6.20455 18.3469 5.04943 17.5411C3.8943 16.7354 2.02147 16.7354 0.866345 17.5411C-0.288782 18.3469 -0.288781 19.6532 0.866345 20.4589Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 5.87008C15.1716 7.21294 18.293 7.21294 20.2182 5.87008C22.1434 4.52722 22.1434 2.35001 20.2182 1.00715C18.293 -0.335715 15.1716 -0.335716 13.2464 1.00715C11.3212 2.35001 11.3212 4.52722 13.2464 5.87008Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M5.74661 13.1645C7.28678 14.2388 9.78389 14.2388 11.3241 13.1645C12.8642 12.0902 12.8642 10.3484 11.3241 9.27415C9.78389 8.19986 7.28678 8.19986 5.74661 9.27415C4.20644 10.3484 4.20645 12.0902 5.74661 13.1645Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 36.9929C15.1716 38.3357 18.293 38.3357 20.2182 36.9929C22.1434 35.65 22.1434 33.4728 20.2182 32.1299C18.293 30.7871 15.1716 30.7871 13.2464 32.1299C11.3212 33.4728 11.3212 35.65 13.2464 36.9929Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M31.9011 21.9178C34.2114 23.5292 37.9571 23.5292 40.2673 21.9178C42.5776 20.3064 42.5776 17.6937 40.2673 16.0823C37.9571 14.4708 34.2114 14.4708 31.9011 16.0823C29.5909 17.6937 29.5909 20.3064 31.9011 21.9178Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M21.7322 29.6984C24.0425 31.3099 27.7881 31.3099 30.0984 29.6984C32.4086 28.087 32.4086 25.4744 30.0984 23.8629C27.7881 22.2515 24.0425 22.2515 21.7322 23.8629C19.422 25.4744 19.422 28.087 21.7322 29.6984Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                            </svg>
+                            CBT - LiftShorts
+                        </div>
+                    </div>
+
+                    <div class="mt-8 space-y-4 lg:mt-0">
+                        <span class="hidden h-1 w-10 rounded bg-teal-500 lg:block"></span>
+
+                        <div>
+                            <h2 class="text-2xl font-medium text-gray-900">COGNITIVE BEHAVIORAL THERAPY ONLINE
+                            </h2>
+
+                            <p class="mt-4 max-w-lg text-gray-500">
+                                CBT Online connects people with the world's largest network of licensed, accredited, and
+                                experienced CBT therapists and coaches. Get matched with the right practitioner and
+                                begin working through your personal challenges with compassionate, experienced support.
+                                Our easy and secure platform works across all devices giving you the ability to
+                                communicate with your therapist anytime, anywhere. and we believe it’s the key to
+                                feeling more balanced, resilient, and successful in every area of life.
+                            </p>
+                        </div>
+
+                        <form class="mt-6 w-full">
+                            <label for="UserEmail" class="sr-only"> Email </label>
+
+                            <div
+                                class="rounded-md border border-gray-100 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
+                                <input type="email" id="UserEmail" placeholder="john@rhcp.com"
+                                    class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm" />
+
+                                <button
+                                    class="mt-1 w-full rounded bg-teal-500 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0">
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="py-8 lg:py-16 lg:pe-16">
+                    <div class="hidden text-teal-600 lg:block">
+                        <div class="flex items-center  gap-2">
+
+                            <svg id="logo-37" width="42" height="38" viewBox="0 0 42 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.74661 28.7259C7.28678 29.8002 9.78389 29.8002 11.3241 28.7259C12.8642 27.6516 12.8642 25.9098 11.3241 24.8355C9.78389 23.7612 7.28678 23.7612 5.74661 24.8355C4.20644 25.9098 4.20644 27.6516 5.74661 28.7259Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M21.7322 14.1371C24.0425 15.7485 27.7881 15.7485 30.0984 14.1371C32.4086 12.5256 32.4086 9.91298 30.0984 8.30155C27.7881 6.69011 24.0425 6.69011 21.7322 8.30155C19.422 9.91298 19.422 12.5256 21.7322 14.1371Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 21.4315C15.1716 22.7743 18.293 22.7743 20.2182 21.4315C22.1434 20.0886 22.1434 17.9114 20.2182 16.5685C18.293 15.2257 15.1716 15.2257 13.2464 16.5685C11.3212 17.9114 11.3212 20.0886 13.2464 21.4315Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M0.866345 20.4589C2.02147 21.2646 3.8943 21.2646 5.04943 20.4589C6.20455 19.6532 6.20455 18.3469 5.04943 17.5411C3.8943 16.7354 2.02147 16.7354 0.866345 17.5411C-0.288782 18.3469 -0.288781 19.6532 0.866345 20.4589Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 5.87008C15.1716 7.21294 18.293 7.21294 20.2182 5.87008C22.1434 4.52722 22.1434 2.35001 20.2182 1.00715C18.293 -0.335715 15.1716 -0.335716 13.2464 1.00715C11.3212 2.35001 11.3212 4.52722 13.2464 5.87008Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M5.74661 13.1645C7.28678 14.2388 9.78389 14.2388 11.3241 13.1645C12.8642 12.0902 12.8642 10.3484 11.3241 9.27415C9.78389 8.19986 7.28678 8.19986 5.74661 9.27415C4.20644 10.3484 4.20645 12.0902 5.74661 13.1645Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M13.2464 36.9929C15.1716 38.3357 18.293 38.3357 20.2182 36.9929C22.1434 35.65 22.1434 33.4728 20.2182 32.1299C18.293 30.7871 15.1716 30.7871 13.2464 32.1299C11.3212 33.4728 11.3212 35.65 13.2464 36.9929Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M31.9011 21.9178C34.2114 23.5292 37.9571 23.5292 40.2673 21.9178C42.5776 20.3064 42.5776 17.6937 40.2673 16.0823C37.9571 14.4708 34.2114 14.4708 31.9011 16.0823C29.5909 17.6937 29.5909 20.3064 31.9011 21.9178Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                                <path
+                                    d="M21.7322 29.6984C24.0425 31.3099 27.7881 31.3099 30.0984 29.6984C32.4086 28.087 32.4086 25.4744 30.0984 23.8629C27.7881 22.2515 24.0425 22.2515 21.7322 23.8629C19.422 25.4744 19.422 28.087 21.7322 29.6984Z"
+                                    class="ccustom" fill="#25CAAC"></path>
+                            </svg>
+                            CBT - LiftShorts
+                        </div>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+                        <div>
+                            <p class="font-medium text-gray-900">Services</p>
+
+                            <ul class="mt-6 space-y-4 text-sm">
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Company Review </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-gray-900">Company</p>
+
+                            <ul class="mt-6 space-y-4 text-sm">
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> About </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-gray-900">Helpful Links</p>
+
+                            <ul class="mt-6 space-y-4 text-sm">
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Contact </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> FAQs </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-gray-700 transition hover:opacity-75"> Live Chat </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 border-t border-gray-100 pt-8">
+                        <ul class="flex flex-wrap gap-4 text-xs">
+                            <li>
+                                <a href="#" class="text-gray-500 transition hover:opacity-75"> Terms & Conditions </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="text-gray-500 transition hover:opacity-75"> Cookies </a>
+                            </li>
+                        </ul>
+
+                        <p class="mt-8 text-xs text-gray-500">&copy; 2024. CBT - LiftShorts. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <div class="fixed inset-x-0 bottom-0">
       <div class="bg-teal-600 px-4 py-3 text-white">
         <p class="text-center text-sm font-medium">
-          Design and Developed by
-          <a
-            href="https://adityatripathi.netlify.app"
-            class="inline-block underline"
-            >@Aditya_Tripathi
-          </a>
+          Mentality - Cognitive Crafters Team<br>
+          <span class="text-xs">Transforming mental healthcare through innovative AI solutions</span><br>
+          <span class="text-xs">Created by <strong>Aditya Tripathi</strong> • 
+          <a href="https://linktr.ee/adityatripathi007" target="_blank" class="underline hover:text-teal-200 transition">Contact & Portfolio</a></span>
         </p>
       </div>
     </div>
-    <script src="../js/main.js"></script>
     <script>
-      // Local Admin Authentication System
-      const adminCredentials = {
-        'admin@mentality.com': 'admin123',
-        'aditya@mentality.com': 'aditya123',
-        'demo@mentality.com': 'demo123'
-      };
+       const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
 
-      document
-        .getElementById("admin-login")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          
-          // Validate credentials
-          if (adminCredentials[email] && adminCredentials[email] === password) {
-            // Generate a simple token
-            const token = btoa(email + ':' + Date.now());
-            localStorage.setItem("adminToken", token);
-            localStorage.setItem("adminEmail", email);
-            localStorage.setItem("loginTime", new Date().toISOString());
-            
-            console.log("Login successful for:", email);
-            alert("Login successful! Welcome to Mentality Admin Dashboard.");
-            
-            // Redirect to admin dashboard
-            window.location.href = "admin-dashboard.html";
-          } else {
-            alert("Invalid credentials. Please try:\nEmail: admin@mentality.com\nPassword: admin123");
-          }
-        });
-
-      // Display demo credentials on page load
-      window.addEventListener('load', function() {
-        const demoInfo = document.createElement('div');
-        demoInfo.className = 'mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg';
-        demoInfo.innerHTML = `
-          <h3 class="text-sm font-semibold text-blue-800 mb-2">Demo Credentials:</h3>
-          <div class="text-xs text-blue-700">
-            <p><strong>Email:</strong> admin@mentality.com</p>
-            <p><strong>Password:</strong> admin123</p>
-            <hr class="my-2 border-blue-200">
-            <p><strong>Email:</strong> demo@mentality.com</p>
-            <p><strong>Password:</strong> demo123</p>
-          </div>
-        `;
-        
-        const form = document.querySelector('form');
-        form.parentNode.insertBefore(demoInfo, form.nextSibling);
-      });
+    menuToggle.addEventListener('click', () => {
+        navbar.classList.toggle('hidden');
+    });
     </script>
-  </body>
+    <script src="js/floating-chat.js"></script>
+</body>
+
 </html>
