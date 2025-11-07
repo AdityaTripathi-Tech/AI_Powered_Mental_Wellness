@@ -1,0 +1,84 @@
+#Liftshorts
+{
+    position: relative; 
+    left: 150px; 
+    top: 30px; 
+    color: LightSeaGreen;
+    width: 300px;;
+    font-size: 18px;
+}
+#div1st
+{
+    width: 100%;
+}
+#About
+{
+    -webkit-text-fill-color: black;
+    position: relative; 
+    left: 800px;
+    text-decoration: none;
+    font-size: 18px;
+}
+#Services
+{
+    -webkit-text-fill-color: black;
+    position: relative; 
+    left: 825px;
+    text-decoration: none;
+    font-size: 18px;
+}
+#Toolkit
+{
+    -webkit-text-fill-color: black;
+    position: relative; 
+    left: 850px;
+    text-decoration: none;
+    font-size: 18px;
+}
+#Training
+{
+    -webkit-text-fill-color: black;
+    position: relative;
+    left: 875px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.div2nd
+{
+    position: relative;
+    left: 0px; 
+    background-Color: SeaGreen; 
+    height: 250px; 
+    width: 100%;
+}
+#h2
+{
+    position: relative;
+    top: 85px;
+    left: 650px;
+    right: 2px;
+    font-size: 50px;
+    width: 500px;
+}
+#table1
+{
+    position: relative;
+    top: 50px;
+    width: 100%;
+}
+#table2
+{
+    position: relative;
+    left: 100px;
+}
+#lift
+{
+    position: relative;
+    left: 150px;
+    font-size: 18px;
+    color: LightSeaGreen;
+}
+#sch
+{
+    font-size: 24px;
+}
