@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Demo - Mentality CBT Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./enhanced-ui.css">
+    <style>
+        .demo-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        .status-online {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-30 backdrop-filter backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+                    <span class="text-xl font-bold">Mentality Platform</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-white hover:text-purple-300 transition">Home</a>
+                    <a href="admin/index.html" class="text-white hover:text-purple-300 transition">Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Mentality CBT Platform
+            </h1>
+            <p class="text-2xl text-gray-300 mb-12">AI-Powered Mental Health Solutions for Modern Healthcare</p>
+            
+            <!-- Status Indicators -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+                <div class="demo-card rounded-xl p-6">
+                    <div class="status-online w-4 h-4 bg-green-400 rounded-full mx-auto mb-2"></div>
+                    <div class="text-sm text-gray-300">All Systems Online</div>
+                </div>
+                <div class="demo-card rounded-xl p-6">
+                    <div class="status-online w-4 h-4 bg-blue-400 rounded-full mx-auto mb-2"></div>
+                    <div class="text-sm text-gray-300">AI Models Active</div>
+                </div>
+                <div class="demo-card rounded-xl p-6">
+                    <div class="status-online w-4 h-4 bg-purple-400 rounded-full mx-auto mb-2"></div>
+                    <div class="text-sm text-gray-300">Blockchain Secured</div>
+                </div>
+                <div class="demo-card rounded-xl p-6">
+                    <div class="status-online w-4 h-4 bg-pink-400 rounded-full mx-auto mb-2"></div>
+                    <div class="text-sm text-gray-300">Ready for Demo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Features -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Core CBT Modules</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mind Gym Games -->
+                <div class="demo-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🎮</div>
+                    <h3 class="text-2xl font-bold mb-4">Mind Gym Games</h3>
+                    <p class="text-gray-300 mb-6">6 fully playable CBT games with real scoring and progress tracking</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="bg-blue-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Breathing Sync Game</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Emotion Maze Challenge</div>
+                        <div class="bg-purple-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Focus Memory Game</div>
+                    </div>
+                    <a href="mind-gym.html" class="btn btn-primary w-full">Play Games Now</a>
+                </div>
+
+                <!-- AI Emotion Detection -->
+                <div class="demo-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">😊</div>
+                    <h3 class="text-2xl font-bold mb-4">AI Emotion Detection</h3>
+                    <p class="text-gray-300 mb-6">Real-time webcam emotion analysis with live mood tracking</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="bg-red-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Live Camera Feed</div>
+                        <div class="bg-yellow-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Emotion Recognition</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Mood Graphs</div>
+                    </div>
+                    <a href="emotion-detection.html" class="btn btn-success w-full">Try Emotion AI</a>
+                </div>
+
+                <!-- AI Journal -->
+                <div class="demo-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">📝</div>
+                    <h3 class="text-2xl font-bold mb-4">AI Smart Journal</h3>
+                    <p class="text-gray-300 mb-6">Intelligent journaling with real sentiment analysis and insights</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="bg-purple-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Sentiment Analysis</div>
+                        <div class="bg-blue-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Writing Prompts</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Progress Tracking</div>
+                    </div>
+                    <a href="ai-journal.html" class="btn btn-secondary w-full">Start Writing</a>
+                </div>
+
+                <!-- Therapist Matching -->
+                <div class="demo-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">👩‍⚕️</div>
+                    <h3 class="text-2xl font-bold mb-4">Find Your Therapist</h3>
+                    <p class="text-gray-300 mb-6">AI-powered matching with interactive quiz and real therapist profiles</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="bg-pink-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Matching Quiz</div>
+                        <div class="bg-blue-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Therapist Profiles</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Booking System</div>
+                    </div>
+                    <a href="therapist-matching.html" class="btn btn-primary w-full">Find Therapist</a>
+                </div>
+
+                <!-- CBT Tools -->
+                <div class="demo-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🛠️</div>
+                    <h3 class="text-2xl font-bold mb-4">24/7 CBT Tools</h3>
+                    <p class="text-gray-300 mb-6">Complete toolkit with breathing exercises, meditation, and crisis support</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="bg-orange-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Breathing Exercises</div>
+                        <div class="bg-purple-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Meditation Guide</div>
+                        <div class="bg-red-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Crisis Support</div>
+                    </div>
+                    <a href="cbt-tools.html" class="btn btn-primary w-full">Use Tools</a>
+                </div>
+
+                <!-- AI Avatar -->
+                <div class="demo-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🤖</div>
+                    <h3 class="text-2xl font-bold mb-4">Dr. Mira AI Companion</h3>
+                    <p class="text-gray-300 mb-6">24/7 AI therapist with voice chat and personalized responses</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="bg-indigo-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ Voice Chat</div>
+                        <div class="bg-purple-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ AI Responses</div>
+                        <div class="bg-blue-500 bg-opacity-20 rounded-lg p-2 text-sm">✅ 24/7 Available</div>
+                    </div>
+                    <a href="ai-avatar.html" class="btn btn-primary w-full">Chat with Dr. Mira</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard & Admin Access -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Analytics & Administration</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- User Dashboard -->
+                <div class="demo-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">📊</div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Enhanced Dashboard</h3>
+                            <p class="text-gray-300">Complete analytics and progress tracking</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center p-3 bg-blue-500 bg-opacity-20 rounded-lg">
+                            <span>Mood Trends</span>
+                            <span class="text-green-400">✅ Active</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-purple-500 bg-opacity-20 rounded-lg">
+                            <span>Progress Charts</span>
+                            <span class="text-green-400">✅ Active</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-500 bg-opacity-20 rounded-lg">
+                            <span>Activity Overview</span>
+                            <span class="text-green-400">✅ Active</span>
+                        </div>
+                    </div>
+                    <a href="enhanced-dashboard.html" class="btn btn-primary w-full">View Dashboard</a>
+                </div>
+
+                <!-- Admin Panel -->
+                <div class="demo-card rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">⚙️</div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Admin Dashboard</h3>
+                            <p class="text-gray-300">Complete platform management</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center p-3 bg-red-500 bg-opacity-20 rounded-lg">
+                            <span>User Management</span>
+                            <span class="text-green-400">✅ Active</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-yellow-500 bg-opacity-20 rounded-lg">
+                            <span>Analytics</span>
+                            <span class="text-green-400">✅ Active</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-purple-500 bg-opacity-20 rounded-lg">
+                            <span>System Health</span>
+                            <span class="text-green-400">✅ Active</span>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-blue-800 font-semibold mb-2">Demo Login:</div>
+                        <div class="text-xs text-blue-700">
+                            <p><strong>Email:</strong> admin@mentality.com</p>
+                            <p><strong>Password:</strong> admin123</p>
+                        </div>
+                    </div>
+                    <a href="admin/index.html" class="btn bg-red-600 hover:bg-red-700 text-white w-full">Access Admin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Features -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-8">Advanced AI Innovations</h2>
+            <p class="text-xl text-gray-300 mb-12">Next-generation mental health technologies</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">🔮</div>
+                    <div class="text-sm">AI Prediction</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">🥽</div>
+                    <div class="text-sm">VR Therapy</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">❤️</div>
+                    <div class="text-sm">Biometric Sync</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">🔒</div>
+                    <div class="text-sm">Blockchain</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">💭</div>
+                    <div class="text-sm">Dream Analysis</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">🤝</div>
+                    <div class="text-sm">Support Network</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">🚨</div>
+                    <div class="text-sm">Crisis AI</div>
+                </div>
+                <div class="demo-card rounded-xl p-4">
+                    <div class="text-3xl mb-2">⚛️</div>
+                    <div class="text-sm">Quantum Engine</div>
+                </div>
+            </div>
+            
+            <a href="unique-features.html" class="btn bg-gradient-to-r from-purple-600 to-pink-600 text-white px-12 py-4 text-lg">
+                Explore Advanced Features
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black bg-opacity-50">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="text-2xl font-bold mb-4">Mentality - Cognitive Crafters Team</div>
+            <p class="text-gray-300 mb-4">Transforming mental healthcare through innovative AI solutions</p>
+            <p class="text-lg text-purple-300 mb-6">
+                Created by <strong>Aditya Tripathi</strong> • 
+                <a href="https://linktr.ee/adityatripathi007" target="_blank" class="text-pink-300 hover:text-pink-200 underline transition">
+                    Contact & Portfolio
+                </a>
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="index.html" class="text-purple-400 hover:text-purple-300">Home</a>
+                <a href="enhanced-dashboard.html" class="text-purple-400 hover:text-purple-300">Dashboard</a>
+                <a href="admin/index.html" class="text-purple-400 hover:text-purple-300">Admin</a>
+                <a href="unique-features.html" class="text-purple-400 hover:text-purple-300">Features</a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/floating-chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mentality CBT Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        .dashboard-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+        .blockchain-indicator {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .notification-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full"></div>
+                    <span class="text-xl font-bold text-gray-800">Mentality Dashboard</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="text-gray-600 hover:text-teal-600 transition">
+                            🔔
+                            <div class="notification-badge">3</div>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold">
+                            A
+                        </div>
+                        <span class="text-gray-700 font-medium">Aditya Tripathi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white mb-8">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-bold mb-2">Welcome back, Aditya! 👋</h1>
+                        <p class="text-lg opacity-90">Here's your mental wellness journey overview</p>
+                        <div class="mt-4 text-sm opacity-75">
+                            Last active: <span id="lastActive">Today at 2:30 PM</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold" id="currentStreak">7</div>
+                        <div class="text-sm opacity-90">Day Streak</div>
+                        <div class="blockchain-indicator mt-2 text-xs">
+                            🔒 Blockchain Secured
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-4">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="metric-card rounded-xl p-6 text-center">
+                    <div class="text-3xl font-bold mb-2" id="totalSessions">24</div>
+                    <div class="text-sm opacity-90">Total Sessions</div>
+                </div>
+                <div class="metric-card rounded-xl p-6 text-center">
+                    <div class="text-3xl font-bold mb-2" id="averageMood">8.2</div>
+                    <div class="text-sm opacity-90">Average Mood</div>
+                </div>
+                <div class="metric-card rounded-xl p-6 text-center">
+                    <div class="text-3xl font-bold mb-2" id="gamesPlayed">156</div>
+                    <div class="text-sm opacity-90">Games Played</div>
+                </div>
+                <div class="metric-card rounded-xl p-6 text-center">
+                    <div class="text-3xl font-bold mb-2" id="journalEntries">18</div>
+                    <div class="text-sm opacity-90">Journal Entries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Grid -->
+    <section class="py-4">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-2 space-y-8">
+                    
+                    <!-- Mood Trends -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold text-gray-800">📊 Mood Trends</h2>
+                            <select class="text-sm border border-gray-300 rounded-lg px-3 py-1">
+                                <option>Last 7 days</option>
+                                <option>Last 30 days</option>
+                                <option>Last 3 months</option>
+                            </select>
+                        </div>
+                        <canvas id="moodTrendChart" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- Activity Overview -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">🎯 Activity Overview</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-3">Mind Gym Progress</h3>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Breathing Sync</span>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-24 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-500">85%</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Focus Challenge</span>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-24 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-green-500 h-2 rounded-full" style="width: 72%"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-500">72%</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Memory Pattern</span>
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-24 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-purple-500 h-2 rounded-full" style="width: 68%"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-500">68%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-3">CBT Tools Usage</h3>
+                                <canvas id="toolsUsageChart" width="200" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Journal Entries -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold text-gray-800">📝 Recent Journal Insights</h2>
+                            <a href="ai-journal.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+                        </div>
+                        <div id="recentJournalEntries" class="space-y-4">
+                            <!-- Journal entries will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-8">
+                    
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">⚡ Quick Actions</h2>
+                        <div class="space-y-3">
+                            <a href="mind-gym.html" class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition">
+                                <span class="text-2xl mr-3">🎮</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800">Play Mind Gym</div>
+                                    <div class="text-xs text-gray-600">Boost your mood with games</div>
+                                </div>
+                            </a>
+                            <a href="ai-journal.html" class="flex items-center p-3 bg-green-50 rounded-lg hover:bg-green-100 transition">
+                                <span class="text-2xl mr-3">📝</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800">Write Journal</div>
+                                    <div class="text-xs text-gray-600">Express your thoughts</div>
+                                </div>
+                            </a>
+                            <a href="emotion-detection.html" class="flex items-center p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
+                                <span class="text-2xl mr-3">🎭</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800">Check Emotions</div>
+                                    <div class="text-xs text-gray-600">AI emotion analysis</div>
+                                </div>
+                            </a>
+                            <a href="therapist-matching.html" class="flex items-center p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition">
+                                <span class="text-2xl mr-3">👩‍⚕️</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800">Find Therapist</div>
+                                    <div class="text-xs text-gray-600">Get professional help</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Blockchain Security Status -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">🔒 Privacy & Security</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Data Encryption</span>
+                                <span class="text-green-600 font-semibold">✓ Active</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Blockchain Storage</span>
+                                <span class="text-green-600 font-semibold">✓ Secured</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Data Integrity</span>
+                                <span class="text-green-600 font-semibold">✓ Verified</span>
+                            </div>
+                            <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                                <div class="text-sm text-green-800">
+                                    <strong>Wallet Address:</strong><br>
+                                    <span class="font-mono text-xs" id="walletAddress">0x1234...abcd</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Therapist Recommendations -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">👩‍⚕️ Recommended Therapists</h2>
+                        <div class="space-y-3" id="recommendedTherapists">
+                            <!-- Therapist recommendations will be populated here -->
+                        </div>
+                        <a href="therapist-matching.html" class="block text-center mt-4 text-blue-600 hover:text-blue-700 text-sm font-medium">
+                            View All Therapists
+                        </a>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="dashboard-card rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">🏆 Achievements</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-center p-2 bg-yellow-50 rounded-lg">
+                                <span class="text-2xl mr-3">🔥</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800 text-sm">7-Day Streak</div>
+                                    <div class="text-xs text-gray-600">Keep it up!</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-2 bg-blue-50 rounded-lg">
+                                <span class="text-2xl mr-3">🎮</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800 text-sm">Game Master</div>
+                                    <div class="text-xs text-gray-600">100+ games played</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-2 bg-green-50 rounded-lg">
+                                <span class="text-2xl mr-3">📝</span>
+                                <div>
+                                    <div class="font-semibold text-gray-800 text-sm">Journaling Pro</div>
+                                    <div class="text-xs text-gray-600">15+ journal entries</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="text-lg font-bold mb-2">Mentality - Cognitive Crafters Team</div>
+            <p class="text-gray-300 text-sm mb-2">Transforming mental healthcare through innovative AI solutions</p>
+            <p class="text-sm text-gray-400">
+                Created by <strong class="text-white">Aditya Tripathi</strong> • 
+                <a href="https://linktr.ee/adityatripathi007" target="_blank" class="text-blue-400 hover:text-blue-300 underline transition">
+                    Contact & Portfolio
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/blockchain-privacy.js"></script>
+    <script src="js/enhanced-dashboard.js"></script>
+    <script src="js/floating-chat.js"></script>
+</body>
+</html>
