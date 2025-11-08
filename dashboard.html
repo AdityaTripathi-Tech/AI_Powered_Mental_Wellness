@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5fdf5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #228b22;
+        }
+
+        .entry {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .entry p {
+            margin: 5px 0;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons a, .buttons button {
+            padding: 10px 20px;
+            background-color: #32cd32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .buttons a:hover, .buttons button:hover {
+            background-color: #228b22;
+        }
+
+        #aiAnalysis {
+            background: #e8f5e8;
+            border: 1px solid #cceccc;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #aiAnalysis h2 {
+            color: #228b22;
+            margin-bottom: 15px;
+        }
+
+        #aiAnalysis p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-section h3 {
+            color: #228b22;
+            margin: 10px 0;
+        }
+
+        .analysis-section p {
+            background: #f0f9f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Section for the AI Analysis Button */
+        .ai-analysis-button-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Your Dashboard</h1>
+
+        <h2>Mood Entries</h2>
+        <div id="moodEntries"></div>
+
+        <h2>Survey Results</h2>
+        <div id="surveyResults"></div>
+
+        <h2>Chatbot Interactions</h2>
+        <div id="chatbotInteractions"></div>
+
+        <!-- AI Analysis Section -->
+        <div id="aiAnalysis">
+            <h2>AI Analysis</h2>
+            <div class="analysis-section">
+                <h3>Mood Analysis</h3>
+                <p id="moodAnalysis"></p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>Survey Results Analysis</h3>
+                <p id="surveyAnalysis"></p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>Chatbot Insights</h3>
+                <p id="chatbotAnalysis"></p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>Suggested Actions</h3>
+                <p id="suggestedActions"></p>
+            </div>
+        </div>
+
+        <!-- Section for the AI Analysis Button -->
+        <div class="ai-analysis-button-section">
+            <button id="aiAnalysisButton">AI ANALYSIS</button>
+        </div>
+
+        <!-- Save Results Buttons -->
+        <div class="buttons">
+            <button onclick="saveAsPDF()">Save as PDF</button>
+            <button onclick="saveAsWord()">Save as Word</button>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="buttons">
+            <a href="mood.html">Mood Tracker</a>
+            <a href="cbt-survey.html">Take Me to the Survey</a>
+            <a href="chatbot.html">AI Chat Bot</a>
+            <a href="login.html" id="logOutButton">Log Out</a>
+            <a href="index.html">Go Back to Home Page</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script>
+        window.onload = () => {
+            const moodEntries = JSON.parse(localStorage.getItem("moodEntries")) || [];
+            const surveyResults = JSON.parse(localStorage.getItem("surveyResults")) || [];
+            const chatbotInteractions = JSON.parse(localStorage.getItem("chatbotInteractions")) || [];
+
+            const moodEntriesDiv = document.getElementById("moodEntries");
+            const surveyResultsDiv = document.getElementById("surveyResults");
+            const chatbotInteractionsDiv = document.getElementById("chatbotInteractions");
+            const aiAnalysisButton = document.getElementById("aiAnalysisButton");
+            const aiAnalysisDiv = document.getElementById("aiAnalysis");
+            const moodAnalysisText = document.getElementById("moodAnalysis");
+            const surveyAnalysisText = document.getElementById("surveyAnalysis");
+            const chatbotAnalysisText = document.getElementById("chatbotAnalysis");
+            const suggestedActionsText = document.getElementById("suggestedActions");
+
+            // Display Mood Entries
+            moodEntries.forEach(entry => {
+                const div = document.createElement("div");
+                div.classList.add("entry");
+                div.innerHTML = `
+                    <p><strong>Mood:</strong> ${entry.mood}</p>
+                    <p><strong>Time:</strong> ${entry.time}</p>
+                    <p><strong>Reason:</strong> ${entry.reason}</p>
+                `;
+                moodEntriesDiv.appendChild(div);
+            });
+
+            // Display Survey Results
+            surveyResults.forEach(entry => {
+                const div = document.createElement("div");
+                div.classList.add("entry");
+                div.innerHTML = `
+                    <p><strong>Stress Level:</strong> ${entry.stressLevel}</p>
+                    <p><strong>Mood:</strong> ${entry.mood}</p>
+                `;
+                surveyResultsDiv.appendChild(div);
+            });
+
+            // Display Chatbot Interactions (if any)
+            chatbotInteractions.forEach(entry => {
+                const div = document.createElement("div");
+                div.classList.add("entry");
+                div.innerHTML = ` 
+                    <p><strong>User Message:</strong> ${entry.message}</p>
+                    <p><strong>Bot Response:</strong> ${entry.response}</p>
+                `;
+                chatbotInteractionsDiv.appendChild(div);
+            });
+
+            // AI Analysis Button functionality
+            aiAnalysisButton.addEventListener("click", () => {
+                // Example AI-like analysis logic
+                const analysis = analyzeData(moodEntries, surveyResults, chatbotInteractions);
+                moodAnalysisText.textContent = analysis.moodAnalysis;
+                surveyAnalysisText.textContent = analysis.surveyAnalysis;
+                chatbotAnalysisText.textContent = analysis.chatbotAnalysis;
+                suggestedActionsText.textContent = analysis.suggestedActions;
+                aiAnalysisDiv.style.display = "block";
+            });
+        }
+
+        // Analyze the data and provide AI-like insights
+        function analyzeData(moodEntries, surveyResults, chatbotInteractions) {
+            let analysis = {
+                moodAnalysis: "",
+                surveyAnalysis: "",
+                chatbotAnalysis: "",
+                suggestedActions: ""
+            };
+
+            // Mood Analysis
+            const moodCount = moodEntries.reduce((acc, entry) => {
+                acc[entry.mood] = (acc[entry.mood] || 0) + 1;
+                return acc;
+            }, {});
+            analysis.moodAnalysis = "Mood Analysis:\n";
+            for (const mood in moodCount) {
+                analysis.moodAnalysis += `You felt ${mood} ${moodCount[mood]} times.\n`;
+            }
+
+            // Survey Results Analysis
+            const stressLevels = surveyResults.map(entry => entry.stressLevel);
+            const averageStress = stressLevels.reduce((acc, level) => acc + getStressValue(level), 0) / stressLevels.length;
+            analysis.surveyAnalysis = `Your average stress level was: ${averageStress.toFixed(2)}\n`;
+
+            // Chatbot Insights
+            const chatbotMessages = chatbotInteractions.map(entry => entry.message).join(" ");
+            if (chatbotMessages.includes("anxiety") || chatbotMessages.includes("stress")) {
+                analysis.chatbotAnalysis = "It seems that you've been discussing anxiety or stress. Consider focusing on relaxation techniques and seeking support when needed.";
+            }
+
+            // Suggested solutions
+            analysis.suggestedActions = "Suggested Actions:\n";
+            analysis.suggestedActions += "1. Engage in mindfulness or grounding exercises to manage stress.\n";
+            analysis.suggestedActions += "2. Consider talking to a professional if anxiety or negative emotions persist.\n";
+            analysis.suggestedActions += "3. Regular physical activity can help reduce stress and improve your mood.\n";
+
+            return analysis;
+        }
+
+        // Map stress levels to numeric values for analysis
+        function getStressValue(stressLevel) {
+            switch (stressLevel) {
+                case "none": return 0;
+                case "low": return 1;
+                case "medium": return 2;
+                case "high": return 3;
+                default: return 0;
+            }
+        }
+
+        // Save results as PDF
+        function saveAsPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Dashboard Summary", 20, 20);
+            doc.text("Mood Entries:", 20, 30);
+            doc.text(document.getElementById("moodEntries").innerText, 20, 40);
+            doc.text("Survey Results:", 20, 60);
+            doc.text(document.getElementById("surveyResults").innerText, 20, 70);
+            doc.text("Chatbot Interactions:", 20, 90);
+            doc.text(document.getElementById("chatbotInteractions").innerText, 20, 100);
+            doc.save("dashboard-summary.pdf");
+        }
+
+        // Save results as Word file (Simple approach)
+        function saveAsWord() {
+            const blob = new Blob([document.documentElement.innerHTML], { type: 'application/msword' });
+            saveAs(blob, 'dashboard-summary.doc');
+        }
+    </script>
+
+</body>
+</html>

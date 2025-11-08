@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Mentality CBT Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .admin-sidebar {
+            background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+        }
+        .nav-item {
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+        .nav-item.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Sidebar -->
+    <div class="flex h-screen">
+        <div class="admin-sidebar w-64 text-white">
+            <div class="p-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full"></div>
+                    <span class="text-xl font-bold">Mentality Admin</span>
+                </div>
+            </div>
+            
+            <nav class="mt-6">
+                <a href="#dashboard" class="nav-item active flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">📊</span>
+                    Dashboard
+                </a>
+                <a href="#users" class="nav-item flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">👥</span>
+                    Users Management
+                </a>
+                <a href="#therapists" class="nav-item flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">👩‍⚕️</span>
+                    Therapists
+                </a>
+                <a href="#sessions" class="nav-item flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">💬</span>
+                    Sessions
+                </a>
+                <a href="#analytics" class="nav-item flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">📈</span>
+                    Analytics
+                </a>
+                <a href="#blockchain" class="nav-item flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">🔒</span>
+                    Blockchain
+                </a>
+                <a href="#settings" class="nav-item flex items-center px-6 py-3 text-gray-300 hover:text-white">
+                    <span class="mr-3">⚙️</span>
+                    Settings
+                </a>
+            </nav>
+            
+            <div class="absolute bottom-0 w-64 p-6">
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold">
+                            A
+                        </div>
+                        <div>
+                            <div class="font-medium" id="adminName">Admin User</div>
+                            <div class="text-xs text-gray-400" id="adminEmail">admin@mentality.com</div>
+                        </div>
+                    </div>
+                    <button onclick="logout()" class="mt-3 w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg text-sm transition">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-y-auto">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b border-gray-200">
+                <div class="flex justify-between items-center px-6 py-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
+                        <p class="text-gray-600">Welcome back! Here's what's happening with Mentality today.</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="text-gray-600 hover:text-gray-800">
+                                🔔
+                                <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                            </button>
+                        </div>
+                        <div class="text-sm text-gray-500" id="currentTime"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <main class="p-6">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="stat-card rounded-xl p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm opacity-90">Total Users</p>
+                                <p class="text-3xl font-bold" id="totalUsers">1,247</p>
+                                <p class="text-xs opacity-75">+12% from last month</p>
+                            </div>
+                            <div class="text-4xl opacity-80">👥</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card rounded-xl p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm opacity-90">Active Sessions</p>
+                                <p class="text-3xl font-bold" id="activeSessions">89</p>
+                                <p class="text-xs opacity-75">Currently online</p>
+                            </div>
+                            <div class="text-4xl opacity-80">💬</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card rounded-xl p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm opacity-90">Therapists</p>
+                                <p class="text-3xl font-bold" id="totalTherapists">156</p>
+                                <p class="text-xs opacity-75">+5 this week</p>
+                            </div>
+                            <div class="text-4xl opacity-80">👩‍⚕️</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card rounded-xl p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm opacity-90">Blockchain Txns</p>
+                                <p class="text-3xl font-bold" id="blockchainTxns">2,341</p>
+                                <p class="text-xs opacity-75">Secure & verified</p>
+                            </div>
+                            <div class="text-4xl opacity-80">🔒</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- User Growth Chart -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">User Growth</h3>
+                        <canvas id="userGrowthChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <!-- Session Types Chart -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Session Types</h3>
+                        <canvas id="sessionTypesChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Recent Users -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Recent Users</h3>
+                        <div class="space-y-4" id="recentUsers">
+                            <!-- Users will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- System Health -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">System Health</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Server Status</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Online</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Database</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Healthy</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Blockchain Network</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Synced</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">AI Services</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Running</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Storage Usage</span>
+                                <span class="text-gray-800">67% (2.1TB / 3TB)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        <button onclick="addUser()" class="flex flex-col items-center p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition">
+                            <span class="text-2xl mb-2">👤</span>
+                            <span class="text-sm font-medium">Add User</span>
+                        </button>
+                        <button onclick="addTherapist()" class="flex flex-col items-center p-4 bg-green-50 hover:bg-green-100 rounded-lg transition">
+                            <span class="text-2xl mb-2">👩‍⚕️</span>
+                            <span class="text-sm font-medium">Add Therapist</span>
+                        </button>
+                        <button onclick="viewReports()" class="flex flex-col items-center p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition">
+                            <span class="text-2xl mb-2">📊</span>
+                            <span class="text-sm font-medium">View Reports</span>
+                        </button>
+                        <button onclick="backupData()" class="flex flex-col items-center p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg transition">
+                            <span class="text-2xl mb-2">💾</span>
+                            <span class="text-sm font-medium">Backup Data</span>
+                        </button>
+                        <button onclick="systemSettings()" class="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition">
+                            <span class="text-2xl mb-2">⚙️</span>
+                            <span class="text-sm font-medium">Settings</span>
+                        </button>
+                        <button onclick="exportData()" class="flex flex-col items-center p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition">
+                            <span class="text-2xl mb-2">📤</span>
+                            <span class="text-sm font-medium">Export Data</span>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>

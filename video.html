@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Chat</title>
+  <script src="https://sdk.twilio.com/js/video/releases/2.11.0/twilio-video.min.js"></script>
+</head>
+<body>
+  <h1>Video Chat</h1>
+  <div id="local-media"></div>
+  <div id="remote-media"></div>
+  <button id="start-call">Start Call</button>
+
+  <script>
+    document.getElementById('start-call').addEventListener('click', async () => {
+        const token2 = localStorage.getItem('token');
+      const response = await fetch('https:/cbt.server.ijebr.com/service/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer  ${token2}`
+        },
+        body: JSON.stringify({ identity: 'user1' })
+      });
+      const data = await response.json();
+      const token = data.token;
+
+      Twilio.Video.connect(token, { name: 'my-room' }).then(room => {
+        console.log(`Successfully joined a Room: ${room}`);
+        
+        room.on('participantConnected', participant => {
+          console.log(`A remote Participant connected: ${participant}`);
+          participant.on('trackSubscribed', track => {
+            document.getElementById('remote-media').appendChild(track.attach());
+          });
+        });
+
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+          const localTrack = new Twilio.Video.LocalVideoTrack(stream.getVideoTracks()[0]);
+          document.getElementById('local-media').appendChild(localTrack.attach());
+        });
+      });
+    });
+  </script>
+</body>
+</html>
