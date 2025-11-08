@@ -118,8 +118,8 @@ Mental health conditions are often diagnosed late due to stigma, lack of awarene
 
 1. Clone this repository to your system:
    ```bash
-   git clone https://github.com/<your-username>/Mentality-CBT.git
-   cd Mentality-CBT
+   git clone https://github.com/AdityaTripathi-Tech/AI_Powered_Mental_Wellness.git
+   cd AI_Powered_Mental_Wellness
 
 
 ## 🔗 Links
