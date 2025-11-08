@@ -146,4 +146,5 @@ Open your browser and visit:
 If you have any feedback, please reach out to us at tripathi.aditya384@gmail.com
 
 ## Demo
-https://cbt-test1.netlify.app/
+http://localhost:8000/demo.html
+
