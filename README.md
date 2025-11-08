@@ -1,5 +1,5 @@
 
-#About:
+# About:
 Developing a Cognitive Behavioral Therapy (CBT) web application designed to help users manage mental health challenges through interactive tools, thought tracking, and personalized strategies for positive behavioral change.
 
 
@@ -120,6 +120,14 @@ Mental health conditions are often diagnosed late due to stigma, lack of awarene
    ```bash
    git clone https://github.com/AdityaTripathi-Tech/AI_Powered_Mental_Wellness.git
    cd AI_Powered_Mental_Wellness
+
+Start a local Python HTTP server:
+
+    python -m http.server 8000
+
+Open your browser and visit:
+
+    http://localhost:8000/demo.html
 
 
 ## 🔗 Links
