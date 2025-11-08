@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Avatar Companion - Mentality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        .avatar-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .chat-bubble {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            max-width: 80%;
+            position: relative;
+        }
+        .chat-bubble.user {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            margin-left: auto;
+        }
+        .chat-bubble.avatar {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        .chat-bubble.system {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            text-align: center;
+            font-size: 0.875rem;
+            margin: 5px auto;
+            max-width: 60%;
+            font-style: italic;
+        }
+        .voice-wave {
+            width: 4px;
+            height: 20px;
+            background: #3b82f6;
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: wave 1s ease-in-out infinite;
+        }
+        .voice-wave:nth-child(2) { animation-delay: 0.1s; }
+        .voice-wave:nth-child(3) { animation-delay: 0.2s; }
+        .voice-wave:nth-child(4) { animation-delay: 0.3s; }
+        .voice-wave:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6b7280;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full"></div>
+                    <span class="text-xl font-bold text-gray-800">AI Avatar Companion</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-teal-600 transition">Home</a>
+                    <a href="enhanced-dashboard.html" class="text-gray-600 hover:text-teal-600 transition">Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🤖 Meet Your AI Companion</h1>
+            <p class="text-xl text-gray-600">Your personal CBT guide, available 24/7 for support and guidance</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Avatar Section -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                    <div class="avatar-container mx-auto mb-6">
+                        <div class="text-6xl text-white" id="avatarFace">🤖</div>
+                    </div>
+                    
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Dr. Mira</h2>
+                    <p class="text-gray-600 mb-4">Your AI CBT Therapist</p>
+                    
+                    <!-- Avatar Status -->
+                    <div class="bg-green-50 rounded-lg p-4 mb-4">
+                        <div class="flex items-center justify-center space-x-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="text-green-700 font-medium">Online & Ready</span>
+                        </div>
+                    </div>
+
+                    <!-- Voice Controls -->
+                    <div class="space-y-3">
+                        <button id="voiceBtn" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                            🎤 Start Voice Chat
+                        </button>
+                        <button id="muteBtn" class="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition">
+                            🔇 Mute Voice
+                        </button>
+                    </div>
+
+                    <!-- Voice Visualization -->
+                    <div id="voiceVisualization" class="hidden flex justify-center items-center mt-4 h-12">
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                        <div class="voice-wave"></div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mt-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Quick Help</h3>
+                    <div class="space-y-2">
+                        <button onclick="quickHelp('anxiety')" class="w-full text-left p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition">
+                            😰 I'm feeling anxious
+                        </button>
+                        <button onclick="quickHelp('sad')" class="w-full text-left p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
+                            😢 I'm feeling sad
+                        </button>
+                        <button onclick="quickHelp('overwhelmed')" class="w-full text-left p-3 bg-orange-50 rounded-lg hover:bg-orange-100 transition">
+                            😵 I'm overwhelmed
+                        </button>
+                        <button onclick="quickHelp('motivation')" class="w-full text-left p-3 bg-green-50 rounded-lg hover:bg-green-100 transition">
+                            💪 I need motivation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg h-96 flex flex-col">
+                    <!-- Chat Header -->
+                    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-t-xl">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-bold">Chat with Dr. Mira</h3>
+                                <p class="text-sm opacity-90">Your personal CBT companion</p>
+                            </div>
+                            <div class="text-right text-sm">
+                                <div>Session: <span id="sessionTime">00:00</span></div>
+                                <div>Messages: <span id="messageCount">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div id="chatMessages" class="flex-1 p-4 overflow-y-auto bg-gray-50">
+                        <div class="chat-bubble avatar">
+                            <p>Hello! I'm Dr. Mira, your AI CBT companion. I'm here to provide support, guidance, and evidence-based therapeutic techniques whenever you need them. How are you feeling today?</p>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div id="typingIndicator" class="hidden px-4">
+                        <div class="chat-bubble avatar">
+                            <div class="typing-indicator">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="p-4 border-t border-gray-200">
+                        <div class="flex space-x-3">
+                            <input 
+                                type="text" 
+                                id="chatInput" 
+                                placeholder="Type your message here..." 
+                                class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                            <button id="sendBtn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                                Send
+                            </button>
+                        </div>
+                        <div class="flex justify-between items-center mt-2 text-xs text-gray-500">
+                            <span>Press Enter to send</span>
+                            <span id="charCount">0/500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggested Responses -->
+                <div class="mt-4">
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Suggested responses:</h4>
+                    <div id="suggestedResponses" class="flex flex-wrap gap-2">
+                        <button onclick="sendSuggested('I need help with anxiety')" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm hover:bg-blue-200 transition">
+                            I need help with anxiety
+                        </button>
+                        <button onclick="sendSuggested('Can you teach me a breathing exercise?')" class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm hover:bg-green-200 transition">
+                            Breathing exercise
+                        </button>
+                        <button onclick="sendSuggested('I want to practice thought reframing')" class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm hover:bg-purple-200 transition">
+                            Thought reframing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Overview -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                <div class="text-4xl mb-4">🧠</div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">CBT Expertise</h3>
+                <p class="text-gray-600 text-sm">Evidence-based cognitive behavioral therapy techniques and interventions</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                <div class="text-4xl mb-4">🗣️</div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">Voice Interaction</h3>
+                <p class="text-gray-600 text-sm">Natural voice conversations with emotional tone recognition</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+                <div class="text-4xl mb-4">🔒</div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">Privacy First</h3>
+                <p class="text-gray-600 text-sm">All conversations are encrypted and stored securely on blockchain</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/blockchain-privacy.js"></script>
+    <script src="js/ai-avatar-simple.js"></script>
+</body>
+</html>

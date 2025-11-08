@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Gym - Mentality CBT Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        .game-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+            animation: breathe 4s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .emotion-bubble {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .emotion-bubble:hover {
+            transform: scale(1.2);
+        }
+        .focus-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .memory-card {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full"></div>
+                    <span class="text-xl font-bold text-gray-800">Mentality Mind Gym</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-teal-600 transition">Home</a>
+                    <a href="dashboard.html" class="text-gray-600 hover:text-teal-600 transition">Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🧠 Mind Gym - CBT Game Zone</h1>
+            <p class="text-xl text-gray-600 mb-8">Interactive games designed to improve focus, calmness, and emotional regulation</p>
+            
+            <!-- Progress Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-teal-600" id="totalGamesPlayed">0</div>
+                    <div class="text-gray-600">Games Played</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-purple-600" id="averageScore">0</div>
+                    <div class="text-gray-600">Average Score</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-blue-600" id="streakDays">0</div>
+                    <div class="text-gray-600">Day Streak</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-green-600" id="emotionalScore">85</div>
+                    <div class="text-gray-600">Emotional Score</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Breathing Sync Game -->
+                <div class="game-card rounded-xl p-6 text-white cursor-pointer" onclick="openGame('breathing')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🫁</div>
+                        <h3 class="text-xl font-bold mb-2">Breathing Sync</h3>
+                        <p class="text-sm opacity-90 mb-4">Synchronize your breathing with visual cues to reduce anxiety</p>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <span class="text-sm">Best Score: <span id="breathingBest">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emotion Maze -->
+                <div class="game-card rounded-xl p-6 text-white cursor-pointer" onclick="openGame('emotion-maze')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🎭</div>
+                        <h3 class="text-xl font-bold mb-2">Emotion Maze</h3>
+                        <p class="text-sm opacity-90 mb-4">Navigate through emotions and learn healthy coping strategies</p>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <span class="text-sm">Best Score: <span id="emotionBest">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Focus Challenge -->
+                <div class="game-card rounded-xl p-6 text-white cursor-pointer" onclick="openGame('focus')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-2">Focus Challenge</h3>
+                        <p class="text-sm opacity-90 mb-4">Improve concentration with attention-training exercises</p>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <span class="text-sm">Best Score: <span id="focusBest">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sleep Relaxation -->
+                <div class="game-card rounded-xl p-6 text-white cursor-pointer" onclick="openGame('sleep')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🌙</div>
+                        <h3 class="text-xl font-bold mb-2">Sleep Relaxation</h3>
+                        <p class="text-sm opacity-90 mb-4">Progressive muscle relaxation for better sleep quality</p>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <span class="text-sm">Sessions: <span id="sleepSessions">0</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Pattern -->
+                <div class="game-card rounded-xl p-6 text-white cursor-pointer" onclick="openGame('memory')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🧩</div>
+                        <h3 class="text-xl font-bold mb-2">Memory Pattern</h3>
+                        <p class="text-sm opacity-90 mb-4">Enhance cognitive function with pattern recognition</p>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <span class="text-sm">Best Level: <span id="memoryLevel">1</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emotion Color Board -->
+                <div class="game-card rounded-xl p-6 text-white cursor-pointer" onclick="openGame('color-board')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🎨</div>
+                        <h3 class="text-xl font-bold mb-2">Emotion Color Board</h3>
+                        <p class="text-sm opacity-90 mb-4">Express and process emotions through color therapy</p>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+                            <span class="text-sm">Artworks: <span id="colorArtworks">0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Modal -->
+    <div id="gameModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="gameTitle" class="text-2xl font-bold text-gray-800"></h2>
+                <button onclick="closeGame()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <div id="gameContent" class="text-center">
+                <!-- Game content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mind-gym.js"></script>
+    <script src="js/floating-chat.js"></script>
+</body>
+</html>

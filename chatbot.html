@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f9f0;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #228b22;
+            text-align: center;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-height: 500px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-entry {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .bot-message {
+            background-color: #e8f5e8;
+            color: #333;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #d1e7dd;
+            color: #333;
+            text-align: right;
+            max-width: 80%;
+            word-wrap: break-word;
+            margin-left: auto;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #32cd32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #228b22;
+        }
+
+        .chat-entry .message {
+            max-width: 100%;
+            display: inline-block;
+            word-wrap: break-word;
+        }
+        
+        .chat-entry .timestamp {
+            font-size: 12px;
+            color: #aaa;
+            text-align: right;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>AI Chatbot</h1>
+        <div class="chat-box" id="chatBox"></div>
+        <input type="text" id="userInput" placeholder="Type your message here..." />
+        <button onclick="sendMessage()">Send</button>
+        
+        <!-- Go Back to Dashboard Button -->
+        <button class="back-btn" onclick="goBackToDashboard()">Go Back to Dashboard</button>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chatBox");
+        const userInput = document.getElementById("userInput");
+
+        // Empathetic and supportive responses for different emotional states
+        const responses = {
+            greeting: [
+                "Hello! It's so good to see you. How are you feeling today? Feel free to share anything on your mind.",
+                "Hey there, I’m happy you’re here. What’s been on your mind? I’m all ears and here to listen!",
+                "Hi! How are you doing today? I'm here for you—let’s talk about whatever you're feeling.",
+                "Hey! It's great to connect with you. How are you feeling right now? What’s been happening in your life?",
+                "Hello! I’m so glad you're here. What’s been occupying your thoughts today? Anything on your mind?"
+            ],
+            sadness: [
+                "I'm really sorry you're feeling this way. I’m here for you. Would you like to talk about it? I’m listening.",
+                "It sounds like you're going through a rough time. I’m here to listen. What’s been bothering you?",
+                "I’m really sorry you’re feeling this way. Sometimes it helps to talk about it. What’s been going on?",
+                "I can hear that things aren’t easy for you right now. If you'd like to share more, I’m here to listen and support you.",
+                "It must be really tough for you. I’m here to support you through this. Want to talk about what’s been making you feel this way?"
+            ],
+            frustration: [
+                "I can understand why you’re feeling frustrated. It’s really tough when things aren’t going right. Do you want to talk about it? I’m here to help you sort things out.",
+                "It sounds like you're having a hard time. It’s okay to feel frustrated. Let’s talk about what’s been causing this.",
+                "Frustration can be overwhelming, and I’m here to help. What’s been making you feel this way? Maybe we can work through it together.",
+                "I can feel your frustration. Want to share what’s been frustrating you lately? I’m here to help you through it.",
+                "That sounds really frustrating. Let’s see if we can figure out a way to handle this. Want to talk about what happened?"
+            ],
+            grief: [
+                "I'm so sorry you're experiencing grief. It can feel like a lot to carry. Would you like to share what’s on your mind? I’m here to listen.",
+                "Grief can feel like such a heavy weight. It’s okay to feel however you feel right now. If you want to talk about it, I’m here for you.",
+                "I hear you. Losing someone or something important is never easy. If you want to talk about your feelings, I’m here to listen and offer support.",
+                "Grief can make everything feel different, and it’s okay to take your time. Would you like to share more with me? I'm here.",
+                "I’m really sorry for what you’re going through. Grief takes time, and it’s okay to feel what you're feeling. Do you want to talk more about it?"
+            ],
+            anxiety: [
+                "I understand that feeling anxious can be really overwhelming. Take a deep breath with me if you can. Want to talk about what's making you feel anxious?",
+                "It’s completely okay to feel anxious sometimes. Let’s slow down together. What’s causing this anxiety for you? I’m here for you.",
+                "I can feel how overwhelming anxiety can be. It’s okay to have these feelings, and I’m here to help you through it. What’s making you feel this way?",
+                "Anxiety can take over, but you’re not alone. Let's take this one step at a time. Can you share what’s causing this stress?",
+                "I’m here for you. Let’s talk about what’s going on. What’s been weighing on you lately? I’m happy to listen."
+            ],
+            encouragement: [
+                "You’ve been doing amazing! Even if it doesn’t feel like it, every step forward is progress. I’m really proud of you!",
+                "I know it’s tough right now, but you’re stronger than you think. Keep going, and remember, every little step counts. You’re doing great!",
+                "You’ve got this! Even on hard days, you’re making progress. Keep up the great work, and be kind to yourself. You’re doing fantastic.",
+                "I’m so proud of you for reaching out. Keep going, you're doing incredible work on yourself. What’s next on your mind? Let’s tackle it together.",
+                "I see your efforts, and they matter. You're doing great, even if it doesn't always feel like it. I’m really proud of you."
+            ],
+            selfDoubt: [
+                "I understand how overwhelming self-doubt can feel. It’s okay, you’re not alone in this. Let’s talk through it. What’s making you feel unsure?",
+                "Self-doubt is something we all face, and it’s okay to feel uncertain sometimes. What’s been making you question yourself?",
+                "It’s tough when we doubt ourselves. You're doing your best, and that's all you can do. Let’s talk about what’s causing you to feel this way.",
+                "You might be feeling unsure right now, but I want you to know that you are enough. Can you tell me more about what's causing these doubts?",
+                "I get it. It’s hard to feel confident when self-doubt creeps in. But you are capable, and we can work through this together."
+            ],
+            happiness: [
+                "I’m so happy to hear you're feeling good! What’s been making you feel so positive today?",
+                "It’s wonderful that you're in a good place today. What’s been happening in your life that’s bringing you joy?",
+                "I love hearing that you're happy! What’s been making you feel so light-hearted? I’d love to hear about it.",
+                "It’s amazing to hear you're feeling great today. What’s been going well for you recently? Let’s celebrate the good things!",
+                "I'm so glad to hear you're in a good space! What’s been making you smile? Tell me about what’s been brightening your day."
+            ],
+            neutral: [
+                "I hear you. Let’s explore that a bit more. What else is on your mind?",
+                "Got it. I’m here to listen. Can you tell me a bit more about what you’re feeling?",
+                "Hmm, okay. Let’s keep talking. What else do you think might be affecting how you’re feeling?",
+                "Understood. I’m here for you. Let’s dive a bit deeper into what’s going on."
+            ],
+        };
+
+        // Function to save a summary to localStorage
+        function saveSummary(summary) {
+            let previousSummary = JSON.parse(localStorage.getItem("chatbotInteractions")) || [];
+            previousSummary.push(summary);
+            localStorage.setItem("chatbotInteractions", JSON.stringify(previousSummary));
+        }
+
+        // Bot response logic
+        function botResponse(userMessage) {
+            let response = "";
+
+            if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi")) {
+                response = getRandomResponse(responses.greeting);
+            } else if (userMessage.toLowerCase().includes("sad") || userMessage.toLowerCase().includes("depressed")) {
+                response = getRandomResponse(responses.sadness);
+            } else if (userMessage.toLowerCase().includes("frustrated") || userMessage.toLowerCase().includes("angry")) {
+                response = getRandomResponse(responses.frustration);
+            } else if (userMessage.toLowerCase().includes("loss") || userMessage.toLowerCase().includes("grief")) {
+                response = getRandomResponse(responses.grief);
+            } else if (userMessage.toLowerCase().includes("anxious") || userMessage.toLowerCase().includes("worried")) {
+                response = getRandomResponse(responses.anxiety);
+            } else if (userMessage.toLowerCase().includes("good") || userMessage.toLowerCase().includes("great")) {
+                response = getRandomResponse(responses.happiness);
+            } else if (userMessage.toLowerCase().includes("doubt") || userMessage.toLowerCase().includes("unsure")) {
+                response = getRandomResponse(responses.selfDoubt);
+            } else if (userMessage.toLowerCase().includes("how are you") || userMessage.toLowerCase().includes("what's up")) {
+                response = getRandomResponse(responses.questions);
+            } else {
+                response = getRandomResponse(responses.neutral);
+            }
+
+            // Save summary based on detected emotion
+            let summary = {
+                message: userMessage,
+                response: response
+            };
+            saveSummary(summary);
+
+            return response;
+        }
+
+        // Function to randomly choose a response
+        function getRandomResponse(responseArray) {
+            return responseArray[Math.floor(Math.random() * responseArray.length)];
+        }
+
+        // Function to add messages to the chat
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("chat-entry", sender === "bot" ? "bot-message" : "user-message");
+            messageDiv.innerHTML = `
+                <div class="message">${message}</div>
+                <div class="timestamp">${new Date().toLocaleTimeString()}</div>
+            `;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the latest message
+        }
+
+        // Send message functionality
+        function sendMessage() {
+            const userMessage = userInput.value.trim();
+            if (userMessage === "") return;
+
+            addMessage(userMessage, "user");
+            userInput.value = "";  // Clear input field
+
+            // Get bot's response
+            const botReply = botResponse(userMessage);
+            setTimeout(() => addMessage(botReply, "bot"), 1000);  // Delay for realism
+        }
+
+        // Go back to dashboard
+        function goBackToDashboard() {
+            window.location.href = "dashboard.html";  // Modify with the correct path to your dashboard
+        }
+
+        // Trigger on Enter key press
+        userInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        // Display initial greeting when page loads
+        window.onload = () => {
+            addMessage(getRandomResponse(responses.greeting), "bot");
+        };
+
+    </script>
+
+</body>
+</html>

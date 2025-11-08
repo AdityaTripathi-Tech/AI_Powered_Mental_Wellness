@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Emotion Detection - Mentality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        .emotion-indicator {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        .emotion-active {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        .webcam-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .mood-graph {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-teal-400 to-blue-500 rounded-full"></div>
+                    <span class="text-xl font-bold text-gray-800">AI Emotion Detection</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-teal-600 transition">Home</a>
+                    <a href="dashboard.html" class="text-gray-600 hover:text-teal-600 transition">Dashboard</a>
+                    <a href="mind-gym.html" class="text-gray-600 hover:text-teal-600 transition">Mind Gym</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🎭 AI Emotion Detection</h1>
+            <p class="text-xl text-gray-600">Real-time emotion analysis and mood tracking for personalized CBT</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Webcam Section -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">📹 Live Emotion Analysis</h2>
+                
+                <div class="webcam-container mb-6">
+                    <video id="webcam" width="100%" height="300" autoplay muted class="bg-gray-200"></video>
+                    <canvas id="overlay" class="absolute top-0 left-0 pointer-events-none"></canvas>
+                </div>
+
+                <div class="flex justify-center space-x-4 mb-6">
+                    <button id="startCamera" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Start Camera
+                    </button>
+                    <button id="stopCamera" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition" disabled>
+                        Stop Camera
+                    </button>
+                    <button id="captureEmotion" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition" disabled>
+                        Capture Emotion
+                    </button>
+                </div>
+
+                <!-- Current Emotion Display -->
+                <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg p-4 text-white text-center">
+                    <div class="text-lg font-semibold">Current Emotion</div>
+                    <div id="currentEmotion" class="text-3xl font-bold">😊 Neutral</div>
+                    <div id="emotionConfidence" class="text-sm opacity-90">Confidence: 0%</div>
+                </div>
+            </div>
+
+            <!-- Emotion Indicators -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">😊 Emotion Levels</h2>
+                
+                <div class="space-y-4">
+                    <div class="emotion-indicator">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">😊 Happy</span>
+                            <span id="happyScore" class="text-sm text-gray-600">0%</span>
+                        </div>
+                        <div class="bg-gray-200 rounded-full h-3">
+                            <div id="happyBar" class="bg-yellow-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="emotion-indicator">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">😢 Sad</span>
+                            <span id="sadScore" class="text-sm text-gray-600">0%</span>
+                        </div>
+                        <div class="bg-gray-200 rounded-full h-3">
+                            <div id="sadBar" class="bg-blue-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="emotion-indicator">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">😠 Angry</span>
+                            <span id="angryScore" class="text-sm text-gray-600">0%</span>
+                        </div>
+                        <div class="bg-gray-200 rounded-full h-3">
+                            <div id="angryBar" class="bg-red-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="emotion-indicator">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">😰 Anxious</span>
+                            <span id="anxiousScore" class="text-sm text-gray-600">0%</span>
+                        </div>
+                        <div class="bg-gray-200 rounded-full h-3">
+                            <div id="anxiousBar" class="bg-orange-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="emotion-indicator">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold">😌 Calm</span>
+                            <span id="calmScore" class="text-sm text-gray-600">0%</span>
+                        </div>
+                        <div class="bg-gray-200 rounded-full h-3">
+                            <div id="calmBar" class="bg-green-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Recommendations -->
+                <div class="mt-6 p-4 bg-gradient-to-r from-teal-50 to-blue-50 rounded-lg">
+                    <h3 class="font-bold text-gray-800 mb-2">🤖 AI Recommendations</h3>
+                    <div id="aiRecommendations" class="text-sm text-gray-700">
+                        Start emotion detection to receive personalized CBT recommendations
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mood Graph Section -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Mood Trends</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2">
+                    <canvas id="moodChart" width="400" height="200"></canvas>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="bg-gradient-to-r from-green-400 to-blue-500 rounded-lg p-4 text-white">
+                        <div class="text-sm opacity-90">Today's Average</div>
+                        <div id="todayAverage" class="text-2xl font-bold">😊 Good</div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg p-4 text-white">
+                        <div class="text-sm opacity-90">Weekly Trend</div>
+                        <div id="weeklyTrend" class="text-2xl font-bold">📈 Improving</div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg p-4 text-white">
+                        <div class="text-sm opacity-90">Streak</div>
+                        <div id="moodStreak" class="text-2xl font-bold">3 Days</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emotion History -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📝 Emotion History</h2>
+            <div id="emotionHistory" class="space-y-3">
+                <!-- History items will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/emotion-detection.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT Mood Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5fdf5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            color: #228b22;
+            text-align: center;
+        }
+
+        .mood-entry {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mood-entry label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="time"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #32cd32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #228b22;
+        }
+
+        .result-box {
+            background: #e8f5e8;
+            border: 1px solid #cceccc;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .result-box h2 {
+            color: #228b22;
+            margin: 0 0 10px;
+        }
+
+        #moodList {
+            margin-top: 20px;
+        }
+
+        .tips-box {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CBT Mood Tracker</h1>
+        <p>Track your moods throughout the day. Enter how you felt, when you felt it, and why.</p>
+
+        <div id="moodForm" class="mood-entry">
+            <label for="mood">How are you feeling?</label>
+            <select id="mood">
+                <option value="">Select Mood</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+                <option value="anxious">Anxious</option>
+            </select>
+
+            <label for="time">What time did you feel this?</label>
+            <input type="time" id="time">
+
+            <label for="reason">Why do you feel this way?</label>
+            <textarea id="reason" rows="3" placeholder="Write about your feelings..."></textarea>
+
+            <button id="addMood">Add Mood</button>
+        </div>
+
+        <h2>Today's Mood Entries</h2>
+        <div id="moodList"></div>
+
+        <!-- CBT Tips Box -->
+        <div class="tips-box" id="tipsBox" style="display:none;">
+            <h2>CBT Tips for Your Mood</h2>
+            <p id="tipText"></p>
+        </div>
+    </div>
+
+    <script>
+        const addMoodButton = document.getElementById("addMood");
+        const moodList = document.getElementById("moodList");
+        const tipsBox = document.getElementById("tipsBox");
+        const tipText = document.getElementById("tipText");
+
+        // Predefined CBT Tips for different moods
+        const cbtTips = {
+            happy: [
+                "Celebrate your happiness by sharing it with someone close to you. Reflect on what made you happy to replicate it in the future.",
+                "Use a gratitude journal to write down the positive aspects of your day. It reinforces your sense of joy and contentment.",
+                "Engage in activities that boost your happiness, such as creative hobbies or connecting with nature.",
+            ],
+            sad: [
+                "Try cognitive reframing: Identify the negative thoughts and replace them with realistic, kinder alternatives.",
+                "Practice mindfulness to stay present. Focus on your breathing or observe your surroundings without judgment.",
+                "Call or message a friend and share how you’re feeling. Social connection can be incredibly uplifting.",
+            ],
+            angry: [
+                "Take deep breaths and count to ten before reacting. This can help diffuse the intensity of your anger.",
+                "Step away from the situation causing your anger and engage in a calming activity, such as a walk or listening to music.",
+                "Write down your thoughts to help organize them. This can reduce emotional overwhelm and clarify your next steps.",
+            ],
+            anxious: [
+                "Try grounding exercises like the 5-4-3-2-1 technique: Name 5 things you see, 4 things you feel, 3 things you hear, 2 things you smell, and 1 thing you taste.",
+                "Focus on small, actionable steps to tackle your worries. Break big tasks into manageable chunks.",
+                "Repeat calming affirmations, such as 'I am safe' or 'I can handle this.' Pair this with slow, deep breaths.",
+            ],
+        };
+
+        // Function to store mood entry in localStorage
+        function storeMoodEntry(mood, time, reason) {
+            let moodData = JSON.parse(localStorage.getItem("moodEntries")) || [];
+            moodData.push({ mood, time, reason });
+            localStorage.setItem("moodEntries", JSON.stringify(moodData));
+        }
+
+        // Function to add mood entry to the display
+        function addMoodEntry(mood, time, reason) {
+            const entryDiv = document.createElement("div");
+            entryDiv.classList.add("mood-entry");
+            entryDiv.innerHTML = `
+                <p><strong>Mood:</strong> ${mood}</p>
+                <p><strong>Time:</strong> ${time}</p>
+                <p><strong>Reason:</strong> ${reason}</p>
+            `;
+            moodList.appendChild(entryDiv);
+        }
+
+        // Function to show CBT Tips
+        function showCbtTips(mood) {
+            const tips = cbtTips[mood];
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipText.textContent = randomTip;
+            tipsBox.style.display = "block";
+        }
+
+        // Add Mood button functionality
+        addMoodButton.addEventListener("click", () => {
+            const mood = document.getElementById("mood").value;
+            const time = document.getElementById("time").value;
+            const reason = document.getElementById("reason").value;
+
+            if (!mood || !time || !reason) {
+                alert("Please fill out all fields before adding your mood.");
+                return;
+            }
+
+            // Store the entry in localStorage
+            storeMoodEntry(mood, time, reason);
+
+            // Add the mood entry to the mood list
+            addMoodEntry(mood, time, reason);
+
+            // Show CBT tips for the current mood
+            showCbtTips(mood);
+
+            // Clear the form
+            document.getElementById("mood").value = "";
+            document.getElementById("time").value = "";
+            document.getElementById("reason").value = "";
+        });
+
+        // Load stored mood entries when the page loads
+        window.onload = () => {
+            const moodData = JSON.parse(localStorage.getItem("moodEntries")) || [];
+            moodData.forEach(entry => addMoodEntry(entry.mood, entry.time, entry.reason));
+        };
+    </script>
+
+</body>
+</html>
