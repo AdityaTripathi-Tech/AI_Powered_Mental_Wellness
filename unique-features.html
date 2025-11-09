@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Features - Mentality CBT Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./enhanced-ui.css">
+    <style>
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        .ai-prediction {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        .vr-container {
+            perspective: 1000px;
+        }
+        .vr-scene {
+            transform-style: preserve-3d;
+            animation: rotate3d 10s linear infinite;
+        }
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        .biometric-pulse {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="nav-enhanced sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+                    <span class="text-xl font-bold">🚀 Unique Features</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="enhanced-dashboard.html" class="nav-link">Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                🏆 Hackathon-Winning Features
+            </h1>
+            <p class="text-2xl text-gray-300 mb-12">Revolutionary mental health innovations that set Mentality apart</p>
+            
+            <!-- Innovation Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+                <div class="card-glass rounded-xl p-6">
+                    <div class="text-4xl font-bold text-purple-400 mb-2">12+</div>
+                    <div class="text-sm text-gray-300">Unique Features</div>
+                </div>
+                <div class="card-glass rounded-xl p-6">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">AI</div>
+                    <div class="text-sm text-gray-300">Powered Everything</div>
+                </div>
+                <div class="card-glass rounded-xl p-6">
+                    <div class="text-4xl font-bold text-green-400 mb-2">100%</div>
+                    <div class="text-sm text-gray-300">Privacy Secured</div>
+                </div>
+                <div class="card-glass rounded-xl p-6">
+                    <div class="text-4xl font-bold text-pink-400 mb-2">24/7</div>
+                    <div class="text-sm text-gray-300">Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Features Grid -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                
+                <!-- AI Mental Health Prediction -->
+                <div class="feature-card ai-prediction rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🔮</div>
+                    <h3 class="text-2xl font-bold mb-4">AI Mental Health Prediction</h3>
+                    <p class="text-gray-200 mb-6">Predicts mental health episodes 7 days in advance using behavioral pattern analysis</p>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-gray-200">Next Prediction:</div>
+                        <div class="text-lg font-bold">Anxiety Risk: <span class="text-yellow-300">Medium</span></div>
+                        <div class="text-sm">in 3 days</div>
+                    </div>
+                    <button onclick="openPrediction()" class="btn btn-outline w-full">View Predictions</button>
+                </div>
+
+                <!-- VR Therapy Sessions -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="vr-container mb-6">
+                        <div class="vr-scene text-6xl">🥽</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">VR Therapy Sessions</h3>
+                    <p class="text-gray-300 mb-6">Immersive virtual reality environments for exposure therapy and relaxation</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="bg-blue-500 bg-opacity-20 rounded-lg p-2 text-sm">🏔️ Mountain Meditation</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded-lg p-2 text-sm">🌊 Ocean Therapy</div>
+                        <div class="bg-purple-500 bg-opacity-20 rounded-lg p-2 text-sm">🌌 Space Relaxation</div>
+                    </div>
+                    <button onclick="startVR()" class="btn btn-primary w-full">Enter VR</button>
+                </div>
+
+                <!-- Biometric Integration -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="biometric-pulse text-6xl mb-6">❤️</div>
+                    <h3 class="text-2xl font-bold mb-4">Biometric Integration</h3>
+                    <p class="text-gray-300 mb-6">Real-time heart rate, stress, and sleep monitoring integration</p>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-red-500 bg-opacity-20 rounded-lg p-3">
+                            <div class="text-lg font-bold">72</div>
+                            <div class="text-xs">BPM</div>
+                        </div>
+                        <div class="bg-orange-500 bg-opacity-20 rounded-lg p-3">
+                            <div class="text-lg font-bold">Low</div>
+                            <div class="text-xs">Stress</div>
+                        </div>
+                    </div>
+                    <button onclick="connectDevice()" class="btn btn-success w-full">Connect Device</button>
+                </div>
+
+                <!-- AI Dream Analysis -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">💭</div>
+                    <h3 class="text-2xl font-bold mb-4">AI Dream Analysis</h3>
+                    <p class="text-gray-300 mb-6">Analyze dreams for psychological insights and subconscious patterns</p>
+                    <div class="bg-indigo-500 bg-opacity-20 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-gray-200">Last Dream Analysis:</div>
+                        <div class="text-sm">"Themes of growth and transformation detected"</div>
+                    </div>
+                    <button onclick="recordDream()" class="btn btn-secondary w-full">Record Dream</button>
+                </div>
+
+                <!-- Social Support Network -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🤝</div>
+                    <h3 class="text-2xl font-bold mb-4">Anonymous Support Network</h3>
+                    <p class="text-gray-300 mb-6">Connect with others facing similar challenges while maintaining complete anonymity</p>
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
+                        <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                        <div class="w-8 h-8 bg-purple-500 rounded-full"></div>
+                        <div class="text-sm self-center">+47 online</div>
+                    </div>
+                    <button onclick="joinSupport()" class="btn btn-primary w-full">Join Network</button>
+                </div>
+
+                <!-- Crisis Intervention AI -->
+                <div class="feature-card rounded-2xl p-8 text-center border-2 border-red-400">
+                    <div class="text-6xl mb-6">🚨</div>
+                    <h3 class="text-2xl font-bold mb-4">Crisis Intervention AI</h3>
+                    <p class="text-gray-300 mb-6">24/7 AI monitoring for crisis detection with automatic emergency response</p>
+                    <div class="bg-red-500 bg-opacity-20 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-red-200">Status: Monitoring</div>
+                        <div class="text-xs">Last check: 2 minutes ago</div>
+                    </div>
+                    <button onclick="testCrisis()" class="btn bg-red-600 hover:bg-red-700 text-white w-full">Test System</button>
+                </div>
+
+                <!-- Personalized Medication Reminders -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">💊</div>
+                    <h3 class="text-2xl font-bold mb-4">Smart Medication Assistant</h3>
+                    <p class="text-gray-300 mb-6">AI-powered medication tracking with mood correlation analysis</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="bg-blue-500 bg-opacity-20 rounded-lg p-2 text-sm">Next: Sertraline in 2h</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded-lg p-2 text-sm">Mood improvement: +15%</div>
+                    </div>
+                    <button onclick="manageMeds()" class="btn btn-primary w-full">Manage Meds</button>
+                </div>
+
+                <!-- Environmental Mood Correlation -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🌤️</div>
+                    <h3 class="text-2xl font-bold mb-4">Environmental Mood Sync</h3>
+                    <p class="text-gray-300 mb-6">Correlates weather, air quality, and location with mood patterns</p>
+                    <div class="grid grid-cols-2 gap-2 mb-4 text-sm">
+                        <div class="bg-yellow-500 bg-opacity-20 rounded p-2">☀️ Sunny: +20%</div>
+                        <div class="bg-blue-500 bg-opacity-20 rounded p-2">🌧️ Rainy: -10%</div>
+                        <div class="bg-green-500 bg-opacity-20 rounded p-2">🌳 Park: +15%</div>
+                        <div class="bg-purple-500 bg-opacity-20 rounded p-2">🏠 Home: +5%</div>
+                    </div>
+                    <button onclick="viewCorrelations()" class="btn btn-success w-full">View Data</button>
+                </div>
+
+                <!-- AI Therapy Chatbot with Personality -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🤖</div>
+                    <h3 class="text-2xl font-bold mb-4">Adaptive AI Therapist</h3>
+                    <p class="text-gray-300 mb-6">AI that learns your communication style and adapts its therapeutic approach</p>
+                    <div class="bg-purple-500 bg-opacity-20 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-gray-200">Current Personality:</div>
+                        <div class="text-sm">"Gentle & Encouraging"</div>
+                    </div>
+                    <button onclick="customizeAI()" class="btn btn-secondary w-full">Customize AI</button>
+                </div>
+
+                <!-- Blockchain Therapy Certificates -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🏅</div>
+                    <h3 class="text-2xl font-bold mb-4">Blockchain Certificates</h3>
+                    <p class="text-gray-300 mb-6">Earn verifiable mental health progress certificates stored on blockchain</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="bg-gold bg-opacity-20 rounded-lg p-2 text-sm">🥇 30-Day Streak Master</div>
+                        <div class="bg-silver bg-opacity-20 rounded-lg p-2 text-sm">🥈 Mindfulness Expert</div>
+                    </div>
+                    <button onclick="viewCertificates()" class="btn btn-primary w-full">View Certificates</button>
+                </div>
+
+                <!-- Voice Emotion Analysis -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">🎤</div>
+                    <h3 class="text-2xl font-bold mb-4">Voice Emotion AI</h3>
+                    <p class="text-gray-300 mb-6">Real-time voice analysis to detect emotional states and stress levels</p>
+                    <div class="bg-blue-500 bg-opacity-20 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-gray-200">Voice Analysis:</div>
+                        <div class="text-sm">Calm & Stable</div>
+                    </div>
+                    <button onclick="analyzeVoice()" class="btn btn-primary w-full">Analyze Voice</button>
+                </div>
+
+                <!-- Quantum Mood Prediction -->
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-6">⚛️</div>
+                    <h3 class="text-2xl font-bold mb-4">Quantum Mood Engine</h3>
+                    <p class="text-gray-300 mb-6">Advanced quantum computing algorithms for complex mood pattern analysis</p>
+                    <div class="bg-cyan-500 bg-opacity-20 rounded-lg p-4 mb-4">
+                        <div class="text-sm text-gray-200">Quantum State:</div>
+                        <div class="text-sm">Superposition Analyzed</div>
+                    </div>
+                    <button onclick="quantumAnalysis()" class="btn btn-primary w-full">Run Analysis</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Showcase -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">🚀 Innovation Showcase</h2>
+                <p class="text-xl text-gray-300">See how our features work together</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Real-time Integration Demo -->
+                <div class="card-glass rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">Real-time Integration Demo</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 p-4 bg-blue-500 bg-opacity-20 rounded-lg">
+                            <div class="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
+                            <div>Biometric data received: Heart rate elevated</div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-yellow-500 bg-opacity-20 rounded-lg">
+                            <div class="w-4 h-4 bg-yellow-500 rounded-full animate-pulse"></div>
+                            <div>AI Analysis: Stress pattern detected</div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-green-500 bg-opacity-20 rounded-lg">
+                            <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
+                            <div>Recommendation: Breathing exercise suggested</div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-purple-500 bg-opacity-20 rounded-lg">
+                            <div class="w-4 h-4 bg-purple-500 rounded-full animate-pulse"></div>
+                            <div>Blockchain: Session data encrypted & stored</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Prediction Chart -->
+                <div class="card-glass rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6">AI Prediction Accuracy</h3>
+                    <canvas id="predictionChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Modal -->
+    <div id="featureModal" class="modal-overlay">
+        <div class="modal-content bg-gray-900 text-white p-8 rounded-2xl max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modalTitle" class="text-2xl font-bold"></h2>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div id="modalContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black bg-opacity-50 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="text-2xl font-bold mb-4">Mentality - Cognitive Crafters Team</div>
+            <p class="text-gray-300 mb-4">Transforming mental healthcare through innovative AI solutions</p>
+            <p class="text-lg text-purple-300 mb-6">
+                Created by <strong>Aditya Tripathi</strong> • 
+                <a href="https://linktr.ee/adityatripathi007" target="_blank" class="text-pink-300 hover:text-pink-200 underline transition">
+                    Contact & Portfolio
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/unique-features.js"></script>
+</body>
+</html>

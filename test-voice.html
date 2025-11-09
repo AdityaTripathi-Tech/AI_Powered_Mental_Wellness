@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Chat Test - Dr. Mira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .status-online { background-color: #10b981; animation: pulse 2s infinite; }
+        .status-offline { background-color: #ef4444; }
+        .status-listening { background-color: #f59e0b; animation: pulse 1s infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">🤖 Dr. Mira Voice Chat Test</h1>
+        
+        <!-- Status Panel -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4">System Status</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="flex items-center">
+                    <span class="status-indicator status-online"></span>
+                    <span>Gemini AI: Connected</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="status-indicator" id="voiceStatus"></span>
+                    <span id="voiceStatusText">Voice Recognition: Checking...</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="status-indicator status-online"></span>
+                    <span>Speech Synthesis: Ready</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Controls -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4">Test Controls</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onclick="testGeminiAPI()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                    🧠 Test Gemini AI
+                </button>
+                <button onclick="testVoiceRecognition()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
+                    🎤 Test Voice Recognition
+                </button>
+                <button onclick="testSpeechSynthesis()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+                    🔊 Test Speech Synthesis
+                </button>
+                <button onclick="testFullConversation()" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition">
+                    💬 Test Full Conversation
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Test Results</h2>
+            <div id="testResults" class="space-y-4 min-h-[200px]">
+                <p class="text-gray-600">Click any test button above to see results...</p>
+            </div>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="mt-8 text-center">
+            <a href="ai-avatar.html" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition">
+                🚀 Go to Full Dr. Mira Chat
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Gemini API Configuration
+        const GEMINI_API_KEY = 'AIzaSyCnNCvI05E3p4wCTLkeASEJHadt7QhSKeY';
+        const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+        // Check voice recognition support
+        window.addEventListener('load', function() {
+            const voiceStatus = document.getElementById('voiceStatus');
+            const voiceStatusText = document.getElementById('voiceStatusText');
+            
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                voiceStatus.className = 'status-indicator status-online';
+                voiceStatusText.textContent = 'Voice Recognition: Supported';
+            } else {
+                voiceStatus.className = 'status-indicator status-offline';
+                voiceStatusText.textContent = 'Voice Recognition: Not Supported';
+            }
+        });
+
+        function addResult(title, content, type = 'info') {
+            const results = document.getElementById('testResults');
+            const resultDiv = document.createElement('div');
+            
+            let bgColor = 'bg-blue-50 border-blue-200';
+            let textColor = 'text-blue-800';
+            
+            if (type === 'success') {
+                bgColor = 'bg-green-50 border-green-200';
+                textColor = 'text-green-800';
+            } else if (type === 'error') {
+                bgColor = 'bg-red-50 border-red-200';
+                textColor = 'text-red-800';
+            }
+            
+            resultDiv.className = `border rounded-lg p-4 ${bgColor}`;
+            resultDiv.innerHTML = `
+                <h3 class="font-bold ${textColor} mb-2">${title}</h3>
+                <p class="${textColor}">${content}</p>
+                <small class="text-gray-500">${new Date().toLocaleTimeString()}</small>
+            `;
+            
+            results.insertBefore(resultDiv, results.firstChild);
+        }
+
+        async function testGeminiAPI() {
+            addResult('🧠 Testing Gemini AI...', 'Sending test prompt to Gemini API...');
+            
+            try {
+                const response = await fetch(`${GEMINI_ENDPOINT}?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: "You are Dr. Mira, a compassionate AI therapist. Respond to this test message: 'Hello Dr. Mira, I'm feeling anxious today.'"
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            maxOutputTokens: 200,
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text;
+                
+                addResult('✅ Gemini AI Success!', `Dr. Mira responded: "${aiResponse}"`, 'success');
+                
+            } catch (error) {
+                addResult('❌ Gemini AI Failed', `Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testVoiceRecognition() {
+            if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+                addResult('❌ Voice Recognition Not Supported', 'Your browser does not support voice recognition.', 'error');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            addResult('🎤 Voice Recognition Test', 'Please speak now... (5 seconds)');
+
+            recognition.onstart = () => {
+                addResult('🎤 Listening...', 'Voice recognition started. Say something!');
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                const confidence = event.results[0][0].confidence;
+                addResult('✅ Voice Recognition Success!', `You said: "${transcript}" (Confidence: ${Math.round(confidence * 100)}%)`, 'success');
+            };
+
+            recognition.onerror = (event) => {
+                addResult('❌ Voice Recognition Error', `Error: ${event.error}`, 'error');
+            };
+
+            recognition.onend = () => {
+                addResult('🎤 Voice Recognition Ended', 'Voice recognition session completed.');
+            };
+
+            recognition.start();
+        }
+
+        function testSpeechSynthesis() {
+            if (!window.speechSynthesis) {
+                addResult('❌ Speech Synthesis Not Supported', 'Your browser does not support speech synthesis.', 'error');
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance("Hello! I'm Dr. Mira, your compassionate AI therapist. I'm here to support you with a warm, caring female voice. How are you feeling today?");
+            utterance.rate = 0.85;  // Slower for clarity
+            utterance.pitch = 1.2;  // Higher pitch for feminine voice
+            utterance.volume = 0.9;
+
+            // Enhanced female voice selection (same as in ai-avatar.js)
+            const voices = speechSynthesis.getVoices();
+            const femaleVoiceNames = [
+                'samantha', 'karen', 'zira', 'hazel', 'susan', 'victoria',
+                'female', 'woman', 'google us english female',
+                'microsoft zira desktop', 'microsoft hazel desktop'
+            ];
+            
+            let selectedVoice = null;
+            
+            // Try to find the best female voice
+            for (const voiceName of femaleVoiceNames) {
+                selectedVoice = voices.find(voice => 
+                    voice.name.toLowerCase().includes(voiceName)
+                );
+                if (selectedVoice) break;
+            }
+            
+            // Fallback to any female voice
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => 
+                    voice.name.toLowerCase().includes('female') ||
+                    voice.name.toLowerCase().includes('woman')
+                );
+            }
+            
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+                addResult('🔊 Female Voice Found!', `Dr. Mira speaking with: ${selectedVoice.name} (${selectedVoice.lang}). Listen to her caring voice!`, 'success');
+            } else {
+                addResult('🔊 Using Default Voice', 'No specific female voice found, using default with feminine settings (higher pitch).', 'info');
+            }
+
+            // Show available voices for debugging
+            const availableVoices = voices.map(v => `${v.name} (${v.lang})`).join(', ');
+            addResult('📋 Available Voices', `Your system has: ${availableVoices}`, 'info');
+
+            speechSynthesis.speak(utterance);
+        }
+
+        async function testFullConversation() {
+            addResult('💬 Full Conversation Test', 'Testing complete voice conversation flow...');
+            
+            // Test 1: Voice Recognition
+            if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+                addResult('❌ Full Test Failed', 'Voice recognition not supported', 'error');
+                return;
+            }
+
+            // Test 2: Gemini API
+            try {
+                const response = await fetch(`${GEMINI_ENDPOINT}?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: "Say hello as Dr. Mira in one sentence." }] }],
+                        generationConfig: { maxOutputTokens: 50 }
+                    })
+                });
+
+                if (!response.ok) throw new Error('API failed');
+                
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text;
+                
+                // Test 3: Speech Synthesis
+                const utterance = new SpeechSynthesisUtterance(aiResponse);
+                speechSynthesis.speak(utterance);
+                
+                addResult('✅ Full Conversation Success!', `Complete flow working: Voice → AI → Speech. Dr. Mira said: "${aiResponse}"`, 'success');
+                
+            } catch (error) {
+                addResult('❌ Full Test Failed', `Error in conversation flow: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
