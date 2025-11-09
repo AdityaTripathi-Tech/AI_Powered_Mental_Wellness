@@ -146,5 +146,8 @@ Open your browser and visit:
 If you have any feedback, please reach out to us at tripathi.aditya384@gmail.com
 
 ## Demo
+
+https://adityatripathi-tech.github.io/AI_Powered_Mental_Wellness/
+
 http://localhost:8000/demo.html
 
